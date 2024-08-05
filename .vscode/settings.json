@@ -2,5 +2,12 @@
 	"editor.tabSize": 4,
 	"editor.rulers": [],
 	"editor.wordWrapColumn": 75,
-	"editor.wordWrap": "wordWrapColumn"
+	"editor.wordWrap": "wordWrapColumn",
+	"eslint.validate": [
+		"javascript",
+		"javascriptreact",
+		"typescript",
+		"typescriptreact",
+		"vue"
+	]
 }
