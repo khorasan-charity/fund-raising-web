@@ -14,7 +14,6 @@ export const Donate = () => {
 
 	return (
 		<Box
-			my={2}
 			px={3}
 			py={2}
 			borderRadius={2}

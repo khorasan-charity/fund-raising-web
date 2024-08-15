@@ -17,4 +17,7 @@ export default {
 		title: "کمک هزینه تامین اقلام دارویی",
 		inputLbl: "مبلغ (ریال)",
 	},
+	medicine_list: {
+		title: "اقلام دارویی مورد نیاز",
+	},
 };
