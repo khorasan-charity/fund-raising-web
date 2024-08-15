@@ -1,11 +1,15 @@
-import TextField from "@mui/material/TextField";
-import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 import { LoadingButton } from "../../common";
-
+import { PriceInput } from "../../common/price/PriceInput";
 import { alpha } from "@mui/material";
+import { useState } from "react";
+import { fa } from "@/ui/i18n";
 
 export const Donate = () => {
+	const [donate, setDonate] = useState(0);
+	const [hasError, setHasError] = useState(false);
+
 	return (
 		<Box
 			m={2}
@@ -20,24 +24,29 @@ export const Donate = () => {
 			alignItems="center"
 		>
 			<Box>
-				<Typography variant="h6">
-					کمک هزینه تامین اقلام دارویی
-				</Typography>
+				<Typography variant="h6">{fa.donate.title}</Typography>
 			</Box>
 			<Box
 				mt={2}
 				width="100%"
 			>
-				<TextField
+				<PriceInput
 					fullWidth
-					label="مبلغ"
-					variant="outlined"
+					helperText={hasError ? fa.common.price.errorMsg : null}
+					label={fa.donate.inputLbl}
+					error={hasError}
 					type="number"
+					value={donate}
+					onChange={v => {
+						setDonate(v);
+						setHasError(!!!v);
+					}}
 				/>
 
 				<LoadingButton
 					fullWidth
 					sx={{ mt: 1 }}
+					disabled={hasError}
 				>
 					پرداخت
 				</LoadingButton>
