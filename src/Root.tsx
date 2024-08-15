@@ -1,15 +1,17 @@
-import { ThemeProvider } from "react-bootstrap";
 import "./App.css";
 import { Home } from "./ui/views";
-import { AppHeader } from "./ui/components";
+import { AppHeader, Rtl, Theme } from "./ui/components";
+import { theme } from "./ui/theme";
 
-function App() {
+function Root() {
 	return (
-		<ThemeProvider dir="rtl">
-			<AppHeader />
-			<Home />
-		</ThemeProvider>
+		<Rtl>
+			<Theme theme={theme}>
+				<AppHeader />
+				<Home />
+			</Theme>
+		</Rtl>
 	);
 }
 
-export default App;
+export default Root;

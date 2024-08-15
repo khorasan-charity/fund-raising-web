@@ -1,8 +1,23 @@
+@font-face {
+	font-family: Vazirmatn;
+	src: url("assets/fonts/Vazirmatn-Regular.woff2");
+	font-style: normal;
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: Vazirmatn;
+	src: url("assets/fonts/Vazirmatn-Bold.woff2");
+	font-style: normal;
+	font-weight: bold;
+}
+
 html,
 body {
 	margin: 0;
 	overflow: hidden;
 	height: 100vh;
+	font-family: Vazirmatn, sans-serif;
 }
 
 #root {

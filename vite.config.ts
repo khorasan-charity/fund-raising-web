@@ -10,4 +10,5 @@ export default defineConfig({
 			typescript: true,
 		}),
 	],
+	publicDir: "assets",
 });
