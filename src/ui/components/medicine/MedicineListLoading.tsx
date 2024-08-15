@@ -1,5 +1,22 @@
 import Skeleton from "@mui/material/Skeleton";
+import Stack from "@mui/material/Stack";
+
+const CIRCLE_SIZE = 48;
 
 export const MedicineListLoading = () => {
-	return <Skeleton sx={{ width: 100, height: 100 }}></Skeleton>;
+	return Array.from({ length: 5 }).map((_, idx) => (
+		<Stack
+			direction="row"
+			gap={2}
+			mt={3}
+			key={idx}
+		>
+			<Skeleton
+				width={CIRCLE_SIZE}
+				height={CIRCLE_SIZE}
+				sx={{ borderRadius: "50%" }}
+			/>
+			<Skeleton sx={{ flex: 1 }} />
+		</Stack>
+	));
 };

@@ -64,5 +64,12 @@ export const theme = createTheme({
 				maxWidth: "xxl",
 			},
 		},
+		MuiSkeleton: {
+			styleOverrides: {
+				root: {
+					transform: "unset",
+				},
+			},
+		},
 	},
 });
