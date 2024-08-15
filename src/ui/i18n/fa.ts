@@ -16,6 +16,7 @@ export default {
 	donate: {
 		title: "کمک هزینه تامین اقلام دارویی",
 		inputLbl: "مبلغ (ریال)",
+		purchase: "پرداخت",
 	},
 	medicine_list: {
 		title: "اقلام دارویی مورد نیاز",

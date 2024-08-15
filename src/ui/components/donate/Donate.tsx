@@ -1,15 +1,20 @@
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 import { alpha } from "@mui/material";
 import { useState } from "react";
 import { fa } from "@/ui/i18n";
 import { PriceInput } from "../common/price/PriceInput";
-import { LoadingButton } from "../common";
 
-const MIN_PRICE = 100000;
+interface DonateProps {
+	min?: number;
 
-export const Donate = () => {
-	const [donate, setDonate] = useState(MIN_PRICE);
+	// methods
+	onPurchase: (value: number) => void;
+}
+
+export const Donate = ({ min = 0, onPurchase }: DonateProps) => {
+	const [donate, setDonate] = useState(min);
 	const [hasError, setHasError] = useState(false);
 
 	return (
@@ -33,24 +38,25 @@ export const Donate = () => {
 			>
 				<PriceInput
 					fullWidth
+					type="number"
 					helperText={hasError ? fa.common.price.errorMsg : null}
 					label={fa.donate.inputLbl}
 					error={hasError}
-					type="number"
 					value={donate}
 					onChange={v => {
 						setDonate(v);
-						setHasError(!v || v < MIN_PRICE);
+						setHasError(!v || v < min);
 					}}
 				/>
 
-				<LoadingButton
+				<Button
 					fullWidth
 					sx={{ mt: 1 }}
 					disabled={hasError}
+					onClick={() => onPurchase(donate)}
 				>
-					پرداخت
-				</LoadingButton>
+					{fa.donate.purchase}
+				</Button>
 			</Box>
 		</Box>
 	);

@@ -1,19 +1,19 @@
-import { fa } from "@/ui/i18n";
+import { MedicineDao } from "@/domain";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 
-export const MedicineList = () => {
+interface MedicineListProps {
+	data: Array<MedicineDao>;
+}
+
+export const MedicineList = ({ data }: MedicineListProps) => {
 	return (
-		<>
-			<Typography variant="h6">{fa.medicine_list.title}</Typography>
-			<Box
-				overflow="auto"
-				maxHeight={500}
-			>
-				{Array.from({ length: 400 }).map((_, idx) => (
-					<li key={idx}>{idx}</li>
-				))}
-			</Box>
-		</>
+		<Box
+			overflow="auto"
+			maxHeight={500}
+		>
+			{data.map(medicine => (
+				<li key={medicine.id}>{medicine.title}</li>
+			))}
+		</Box>
 	);
 };
