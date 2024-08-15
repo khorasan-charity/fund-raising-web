@@ -1,6 +1,6 @@
 # Todos
 
--   [ ] Application Header (Mobile)
+-   [x] Application Header (Mobile)
 -   [ ] Donate Section
     -   [ ] Donate history summary
     -   [ ] Donate form input
