@@ -14,7 +14,7 @@ export const Donate = () => {
 
 	return (
 		<Box
-			m={2}
+			my={2}
 			px={3}
 			py={2}
 			borderRadius={2}
@@ -41,7 +41,7 @@ export const Donate = () => {
 					value={donate}
 					onChange={v => {
 						setDonate(v);
-						setHasError(!!!v || v < MIN_PRICE);
+						setHasError(!v || v < MIN_PRICE);
 					}}
 				/>
 
