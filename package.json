@@ -9,7 +9,7 @@
 		"preview": "vite preview",
 		"prettify": "prettier --write .",
 		"prepare": "husky",
-		"lint": "eslint . --fix --ext ts,tsx,js,jsx --report-unused-disable-directives"
+		"lint": "eslint . --fix --ext ts,tsx,js,jsx"
 	},
 	"dependencies": {
 		"@emotion/cache": "^11.13.1",
