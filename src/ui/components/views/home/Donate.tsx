@@ -1,10 +1,18 @@
 import TextField from "@mui/material/TextField";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import { LoadingButton } from "../../common";
+
 import { alpha } from "@mui/material";
+import { useState } from "react";
 
 export const Donate = () => {
+	const [submitting, setSubmitting] = useState(false);
+
+	const toggle = () => {
+		setSubmitting(old => !old);
+	};
+
 	return (
 		<Box
 			m={2}
@@ -34,12 +42,14 @@ export const Donate = () => {
 					type="number"
 				/>
 
-				<Button
+				<LoadingButton
 					fullWidth
+					loading={submitting}
 					sx={{ mt: 1 }}
+					onClick={toggle}
 				>
 					پرداخت
-				</Button>
+				</LoadingButton>
 			</Box>
 		</Box>
 	);
