@@ -1,10 +1,10 @@
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import { LoadingButton } from "../../common";
-import { PriceInput } from "../../common/price/PriceInput";
 import { alpha } from "@mui/material";
 import { useState } from "react";
 import { fa } from "@/ui/i18n";
+import { PriceInput } from "../common/price/PriceInput";
+import { LoadingButton } from "../common";
 
 const MIN_PRICE = 100000;
 
