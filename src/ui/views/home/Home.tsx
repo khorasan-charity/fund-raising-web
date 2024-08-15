@@ -1,5 +1,5 @@
-import { fa } from "../../i18n";
+import { Donate } from "@/ui/components/views/home/Donate";
 
 export function Home() {
-	return <div>{fa.home.title}</div>;
+	return <Donate />;
 }

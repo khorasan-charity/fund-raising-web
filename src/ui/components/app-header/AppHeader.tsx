@@ -29,7 +29,7 @@ export function AppHeader() {
 				>
 					{fa.app_header.title}
 				</Typography>
-				<Button color="inherit">{fa.app_header.login}</Button>
+				<Button>{fa.app_header.login}</Button>
 			</Toolbar>
 		</AppBar>
 	);
