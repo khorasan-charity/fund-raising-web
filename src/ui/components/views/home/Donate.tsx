@@ -4,15 +4,8 @@ import Typography from "@mui/material/Typography";
 import { LoadingButton } from "../../common";
 
 import { alpha } from "@mui/material";
-import { useState } from "react";
 
 export const Donate = () => {
-	const [submitting, setSubmitting] = useState(false);
-
-	const toggle = () => {
-		setSubmitting(old => !old);
-	};
-
 	return (
 		<Box
 			m={2}
@@ -44,9 +37,7 @@ export const Donate = () => {
 
 				<LoadingButton
 					fullWidth
-					loading={submitting}
 					sx={{ mt: 1 }}
-					onClick={toggle}
 				>
 					پرداخت
 				</LoadingButton>
