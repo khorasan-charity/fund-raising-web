@@ -27,6 +27,11 @@ export const PriceInput = ({ value, ...rest }: PriceProps) => {
 		<TextField
 			{...rest}
 			helperText={rest.helperText || helperText}
+			FormHelperTextProps={{
+				sx: {
+					fontSize: 16,
+				},
+			}}
 			value={value || ""}
 			onChange={onPriceChange}
 			inputProps={{
