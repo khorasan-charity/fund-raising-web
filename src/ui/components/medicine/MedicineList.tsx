@@ -1,5 +1,6 @@
 import { MedicineDao } from "@/domain";
 import Box from "@mui/material/Box";
+import { MedicineItem } from "./MedicineItem";
 
 interface MedicineListProps {
 	data: Array<MedicineDao>;
@@ -12,7 +13,10 @@ export const MedicineList = ({ data }: MedicineListProps) => {
 			maxHeight={500}
 		>
 			{data.map(medicine => (
-				<li key={medicine.id}>{medicine.title}</li>
+				<MedicineItem
+					key={medicine.id}
+					{...medicine}
+				/>
 			))}
 		</Box>
 	);

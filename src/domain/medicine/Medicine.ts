@@ -6,4 +6,5 @@ export interface MedicineDao {
 	total: number;
 	unitPrice: number;
 	paidAmount: number;
+	imgUrl: string;
 }

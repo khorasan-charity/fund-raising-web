@@ -24,7 +24,8 @@ const MEDICINE_LIST: Array<MedicineDao> = Array.from({ length: 100 }).map(
 			total,
 			paidAmount,
 			unitPrice,
-			title: "داروی " + idx.toString(),
+			title: "داروی مورد نیاز شماره " + (idx + 1).toString(),
+			imgUrl: "https://i.pravatar.cc/48",
 		};
 	},
 );
