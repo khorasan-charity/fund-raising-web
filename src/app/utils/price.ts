@@ -17,7 +17,7 @@ function splitStringFromEnd(
 }
 
 export const split = (value: number): string => {
-	const int = Math.round(value / 10);
+	const int = Math.floor(value / 10);
 	const float = value % 10;
 	const every = 3;
 

@@ -6,8 +6,10 @@ import { alpha } from "@mui/material";
 import { useState } from "react";
 import { fa } from "@/ui/i18n";
 
+const MIN_PRICE = 100000;
+
 export const Donate = () => {
-	const [donate, setDonate] = useState(0);
+	const [donate, setDonate] = useState(MIN_PRICE);
 	const [hasError, setHasError] = useState(false);
 
 	return (
@@ -39,7 +41,7 @@ export const Donate = () => {
 					value={donate}
 					onChange={v => {
 						setDonate(v);
-						setHasError(!!!v);
+						setHasError(!!!v || v < MIN_PRICE);
 					}}
 				/>
 
