@@ -11,4 +11,7 @@ export default defineConfig({
 		}),
 	],
 	publicDir: "assets",
+	server: {
+		host: "0.0.0.0",
+	},
 });
