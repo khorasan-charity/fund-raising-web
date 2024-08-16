@@ -17,5 +17,6 @@ module.exports = {
 		"no-console": "error",
 		"no-debugger": "error",
 		"no-unused-vars": "warn",
+		"@typescript-eslint/no-non-null-asserted-optional-chain": "warn",
 	},
 };

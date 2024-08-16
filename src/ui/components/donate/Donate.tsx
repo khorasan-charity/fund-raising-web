@@ -1,6 +1,6 @@
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import { alpha, CircularProgress } from "@mui/material";
+import { alpha } from "@mui/material";
 import { useState } from "react";
 import { fa } from "@/ui/i18n";
 import { PriceInput } from "../common/price/PriceInput";
