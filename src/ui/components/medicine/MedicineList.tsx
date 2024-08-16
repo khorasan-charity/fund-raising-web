@@ -12,7 +12,7 @@ export const MedicineList = ({ data }: MedicineListProps) => {
 			container
 			spacing={2}
 			overflow="auto"
-			maxHeight={500}
+			// maxHeight={500}
 			pb={2}
 		>
 			{data.map(medicine => (

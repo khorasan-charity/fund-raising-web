@@ -10,7 +10,7 @@ import Container from "@mui/material/Container";
 export function AppHeader() {
 	return (
 		<AppBar
-			position="static"
+			position="sticky"
 			elevation={0}
 		>
 			<Container>
