@@ -8,7 +8,6 @@ export const MedicineListLoading = () => {
 		<Stack
 			direction="row"
 			gap={2}
-			mt={3}
 			key={idx}
 		>
 			<Skeleton

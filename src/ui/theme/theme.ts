@@ -1,4 +1,7 @@
 import createTheme from "@mui/material/styles/createTheme";
+import { grey } from "@mui/material/colors";
+
+const BACKGROUND_COLOR = grey[50];
 
 declare module "@mui/material/styles" {
 	interface BreakpointOverrides {
@@ -50,6 +53,9 @@ export const theme = createTheme({
 	palette: {
 		primary: {
 			main: "#ffcc00",
+		},
+		background: {
+			default: BACKGROUND_COLOR,
 		},
 	},
 	components: {

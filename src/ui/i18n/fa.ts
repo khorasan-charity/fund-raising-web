@@ -21,4 +21,10 @@ export default {
 	medicine_list: {
 		title: "اقلام دارویی مورد نیاز",
 	},
+	medicine_item: {
+		remainingLbl: "باقی مانده",
+		collectedLbl: "جمع آوری شده",
+		unitPriceLbl: "قیمت واحد",
+		neededLbl: "مورد نیاز",
+	},
 };

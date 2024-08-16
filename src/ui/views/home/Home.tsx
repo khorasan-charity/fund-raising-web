@@ -72,14 +72,6 @@ export function Home() {
 				direction={{ lg: "row-reverse" }}
 				my={2}
 			>
-				{isDesktop && (
-					<Box>
-						<Donate
-							min={MIN_PRICE}
-							onPurchase={onPurchase}
-						/>
-					</Box>
-				)}
 				<Box
 					flex={1}
 					mt={{ xs: 2, lg: 0 }}
@@ -99,11 +91,29 @@ export function Home() {
 							</Button>
 						)}
 					</Stack>
-					{loading ? (
-						<MedicineListLoading />
-					) : (
-						<MedicineList data={medicineList} />
-					)}
+					<Stack
+						direction="row"
+						mt={2}
+						gap={2}
+					>
+						<Box flex={1}>
+							{loading ? (
+								<Stack gap={2}>
+									<MedicineListLoading />
+								</Stack>
+							) : (
+								<MedicineList data={medicineList} />
+							)}
+						</Box>
+						{isDesktop && (
+							<Box>
+								<Donate
+									min={MIN_PRICE}
+									onPurchase={onPurchase}
+								/>
+							</Box>
+						)}
+					</Stack>
 				</Box>
 			</Stack>
 

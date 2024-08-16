@@ -1,5 +1,5 @@
 import { MedicineDao } from "@/domain";
-import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
 import { MedicineItem } from "./MedicineItem";
 
 interface MedicineListProps {
@@ -8,16 +8,24 @@ interface MedicineListProps {
 
 export const MedicineList = ({ data }: MedicineListProps) => {
 	return (
-		<Box
+		<Grid
+			container
+			spacing={2}
 			overflow="auto"
 			maxHeight={500}
+			pb={2}
 		>
 			{data.map(medicine => (
-				<MedicineItem
+				<Grid
+					item
+					xs={12}
+					sm={6}
+					xl={4}
 					key={medicine.id}
-					{...medicine}
-				/>
+				>
+					<MedicineItem {...medicine} />
+				</Grid>
 			))}
-		</Box>
+		</Grid>
 	);
 };
