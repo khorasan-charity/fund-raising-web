@@ -12,7 +12,7 @@ export const Toast = () => {
 			theme="colored"
 			position={position}
 			bodyStyle={{ fontFamily: "Vazirmatn" }}
-			toastStyle={{ margin: !isDesktop ? 8 : 0 }}
+			toastStyle={{ margin: !isDesktop ? 8 : 0, borderRadius: 8 }}
 			closeButton={false}
 			rtl
 		/>
