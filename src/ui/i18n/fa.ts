@@ -18,6 +18,7 @@ export default {
 		inputLbl: "مبلغ (ریال)",
 		purchase: "پرداخت",
 		purchaseLoadingLbl: "در حال پرداخت...",
+		successMsg: "پرداخت با موفقیت انجام شد",
 	},
 	medicine_list: {
 		title: "اقلام دارویی مورد نیاز",

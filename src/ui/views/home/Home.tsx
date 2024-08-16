@@ -2,8 +2,6 @@ import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import type { ThemeOptions } from "@mui/material/styles/createTheme";
 import { Donate } from "@/ui/components/donate/Donate";
 import { MedicineList } from "@/ui/components/medicine/MedicineList";
 import { useEffect, useState } from "react";
@@ -12,6 +10,8 @@ import { delay, randomInt } from "@/app/utils";
 import { fa } from "@/ui/i18n";
 import Typography from "@mui/material/Typography";
 import { MedicineListLoading } from "@/ui/components/medicine/MedicineListLoading";
+import { toast } from "react-toastify";
+import { useIsDesktop } from "@/app/hooks";
 
 const MEDICINE_LIST: Array<MedicineDao> = Array.from({ length: 100 }).map(
 	(_, idx) => {
@@ -39,9 +39,7 @@ const MIN_PRICE = 100000;
 
 export function Home() {
 	const [modal, setModal] = useState(false);
-	const isDesktop = useMediaQuery<ThemeOptions>(
-		theme => theme.breakpoints?.up?.("lg")!,
-	);
+	const isDesktop = useIsDesktop();
 	const [medicineList, setMedicineList] = useState<Array<MedicineDao>>(
 		[],
 	);
@@ -54,10 +52,15 @@ export function Home() {
 		setLoading(false);
 	};
 
+	const showSuccessMsg = () => {
+		toast.success(fa.donate.successMsg);
+	};
+
 	const onPurchase = (donate: number) => {
 		const first = { ...medicineList[0] };
 		first.paidAmount += donate;
 		setMedicineList(old => [first, ...old.slice(1, old.length)]);
+		showSuccessMsg();
 	};
 
 	useEffect(() => {
