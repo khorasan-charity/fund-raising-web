@@ -1,10 +1,11 @@
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import { alpha } from "@mui/material";
+import { alpha, CircularProgress } from "@mui/material";
 import { useState } from "react";
 import { fa } from "@/ui/i18n";
 import { PriceInput } from "../common/price/PriceInput";
+import LoadingButton from "@mui/lab/LoadingButton";
+import { delay } from "@/app/utils";
 
 interface DonateProps {
 	min?: number;
@@ -16,6 +17,14 @@ interface DonateProps {
 export const Donate = ({ min = 0, onPurchase }: DonateProps) => {
 	const [donate, setDonate] = useState(min);
 	const [hasError, setHasError] = useState(false);
+	const [loading, setLoading] = useState(false);
+
+	const onClick = async () => {
+		setLoading(true);
+		await delay(500);
+		onPurchase(donate);
+		setLoading(false);
+	};
 
 	return (
 		<Box
@@ -49,14 +58,16 @@ export const Donate = ({ min = 0, onPurchase }: DonateProps) => {
 					}}
 				/>
 
-				<Button
+				<LoadingButton
 					fullWidth
 					sx={{ mt: 1 }}
 					disabled={hasError}
-					onClick={() => onPurchase(donate)}
+					loading={loading}
+					onClick={onClick}
+					variant="contained"
 				>
 					{fa.donate.purchase}
-				</Button>
+				</LoadingButton>
 			</Box>
 		</Box>
 	);

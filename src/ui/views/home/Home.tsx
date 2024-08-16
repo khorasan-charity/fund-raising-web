@@ -54,7 +54,11 @@ export function Home() {
 		setLoading(false);
 	};
 
-	const onPurchase = (donate: number) => {};
+	const onPurchase = (donate: number) => {
+		const first = { ...medicineList[0] };
+		first.paidAmount += donate;
+		setMedicineList(old => [first, ...old.slice(1, old.length)]);
+	};
 
 	useEffect(() => {
 		fetchMedicineList();
