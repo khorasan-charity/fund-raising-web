@@ -62,6 +62,7 @@ interface IMedicineNeededCardProps {
 export default function MedicineNeededCard({
 	medicine,
 }: IMedicineNeededCardProps) {
+	const isFull = medicine.percent === 100;
 	return (
 		<Card>
 			<Box position="relative">
@@ -104,9 +105,7 @@ export default function MedicineNeededCard({
 				<Participation
 					percent={medicine.percent}
 					fontSize={32}
-					color={
-						medicine.percent === 100 ? "success" : "secondary"
-					}
+					color={isFull ? "success" : "secondary"}
 				/>
 				<Box
 					display="inline-block"
@@ -116,7 +115,7 @@ export default function MedicineNeededCard({
 					<Typography
 						fontWeight={700}
 						fontSize={22}
-						color="secondary"
+						color={isFull ? "success.main" : "secondary.main"}
 					>
 						{medicine.paid / 1e6} میلیون تومان
 					</Typography>
