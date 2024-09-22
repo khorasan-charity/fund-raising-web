@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import { Avatar } from "@mui/material";
+import Participation from "../campaign/participation/Participation";
 
 interface ICampaignCardProps {
 	campaign: ICampaign;
@@ -15,7 +15,7 @@ const CampaignImg = styled.img`
 
 export default function CampaignCard({ campaign }: ICampaignCardProps) {
 	return (
-		<Card>
+		<Card sx={{ cursor: "pointer" }}>
 			<CampaignImg src={campaign.imgUrl} />
 			<Box
 				px={2}
@@ -34,15 +34,7 @@ export default function CampaignCard({ campaign }: ICampaignCardProps) {
 				mt={3}
 				pb={2}
 			>
-				<Avatar
-					src={campaign.imgUrl}
-					sx={{
-						width: 65,
-						height: 65,
-						display: "inline-block",
-						verticalAlign: "middle",
-					}}
-				/>
+				<Participation percent={campaign.percent} />
 				<Box
 					display="inline-block"
 					ml="10px"
