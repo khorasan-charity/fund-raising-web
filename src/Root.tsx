@@ -2,7 +2,6 @@ import "./App.css";
 import { Home } from "./ui/views";
 import { AppHeader, Rtl, Theme, Toast } from "./ui/components";
 import CssBaseline from "@mui/material/CssBaseline";
-import Container from "@mui/material/Container";
 import { theme } from "./ui/theme";
 import { useEffect, useState } from "react";
 import { delay } from "./app/utils";
@@ -28,9 +27,7 @@ function Root() {
 					<>
 						<Toast />
 						<AppHeader />
-						<Container>
-							<Home />
-						</Container>
+						<Home />
 					</>
 				) : (
 					<SplashScreen />

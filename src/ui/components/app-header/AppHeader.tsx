@@ -5,9 +5,9 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import styled from "@emotion/styled";
-
-import logo from "@/assets/logo.png";
 import { PropsWithChildren } from "react";
+
+import logo from "@/assets/images/logo.png";
 
 const Logo = styled.img`
 	width: 64px;
