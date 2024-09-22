@@ -21,6 +21,7 @@ export default function Campaigns({ list }: ICampaignsProps) {
 			<Grid
 				container
 				spacing={8}
+				py={2}
 			>
 				{list.map((campaign, index) => (
 					<Grid
