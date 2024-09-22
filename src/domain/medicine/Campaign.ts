@@ -1,7 +1,7 @@
-import { ID, Nullable } from "@/types";
+import { Id, Nullable } from "@/types";
 
 export interface ICampaign {
-	id: ID;
+	id: Id;
 	imgUrl: string;
 	title: string;
 	collected: number;
@@ -10,7 +10,7 @@ export interface ICampaign {
 }
 
 export interface ICampaignDetails {
-	id: ID;
+	id: Id;
 	images: string[];
 	title: string;
 	description: string;

@@ -9,11 +9,16 @@ import {
 } from "@mui/material";
 
 import drSara from "@/assets/images/dr-sara.png";
+import drug from "@/assets/images/drug.png";
+
 import Participation from "@/ui/components/campaign/participation/Participation";
+import MedicinesNeeded from "@/ui/components/campaign/campaign-details/MedicinesNeeded";
+import { IMedicine } from "@/domain";
 
 const Img = styled.img`
 	width: 100%;
-	height: 490px;
+	max-height: 490px;
+	height: 100%;
 `;
 
 const Analytics = styled(Card)`
@@ -22,11 +27,68 @@ const Analytics = styled(Card)`
 	text-align: center;
 `;
 
+const medicines: IMedicine[] = [
+	{
+		id: Number(Math.random().toFixed(3)),
+		imgUrl: drug,
+		paid: 66_880_000,
+		title: "قرص مرکاپتوپورین 50",
+		total: 220,
+		unit: 304_000,
+		percent: 100,
+	},
+	{
+		id: Number(Math.random().toFixed(3)),
+		imgUrl: drug,
+		paid: 66_880_000,
+		title: "قرص مرکاپتوپورین 50",
+		total: 220,
+		unit: 304_000,
+		percent: 100,
+	},
+	{
+		id: Number(Math.random().toFixed(3)),
+		imgUrl: drug,
+		paid: 66_880_000,
+		title: "قرص مرکاپتوپورین 50",
+		total: 220,
+		unit: 304_000,
+		percent: 100,
+	},
+	{
+		id: Number(Math.random().toFixed(3)),
+		imgUrl: drug,
+		paid: 66_880_000,
+		title: "قرص مرکاپتوپورین 50",
+		total: 220,
+		unit: 304_000,
+		percent: 67,
+	},
+	{
+		id: Number(Math.random().toFixed(3)),
+		imgUrl: drug,
+		paid: 66_880_000,
+		title: "قرص مرکاپتوپورین 50",
+		total: 220,
+		unit: 304_000,
+		percent: 0,
+	},
+	{
+		id: Number(Math.random().toFixed(3)),
+		imgUrl: drug,
+		paid: 66_880_000,
+		title: "قرص مرکاپتوپورین 50",
+		total: 220,
+		unit: 304_000,
+		percent: 0,
+	},
+];
+
 export default function CampaignDetailsPage() {
 	return (
 		<Container>
 			<Stack
-				direction="row"
+				direction={{ xs: "column", lg: "row" }}
 				mt={1}
 				gap={1}
 			>
@@ -35,6 +97,7 @@ export default function CampaignDetailsPage() {
 					// 96px => app header, 8px => mt={1} upper stack
 					height="calc(100vh - (96px + 8px))"
 					overflow="auto"
+					order={{ xs: 2, lg: 1 }}
 				>
 					<Img src={drSara} />
 					<Typography
@@ -69,8 +132,13 @@ export default function CampaignDetailsPage() {
 						کمپین بیاد ایشان و با حمایت مالی مادر بزرگوار ایشان
 						ساخته شده ست.
 					</Typography>
+
+					<MedicinesNeeded medicines={medicines} />
 				</Stack>
-				<Stack width={400}>
+				<Stack
+					width={{ xs: "100%", lg: 400 }}
+					order={{ xs: 1, lg: 1 }}
+				>
 					<Analytics>
 						<Box mt={5.5}>
 							<Participation
