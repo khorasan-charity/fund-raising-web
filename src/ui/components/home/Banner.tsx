@@ -10,10 +10,13 @@ const Child = styled.img`
 	max-width: 774px;
 	max-height: 408px;
 	height: 100%;
+	width: 100%;
 	flex: 1;
 `;
 
 export default function HomeBanner() {
+	const fontSize = { xs: 22, lg: 28, xl: 32 };
+
 	return (
 		<Box
 			p={"24px"}
@@ -21,18 +24,17 @@ export default function HomeBanner() {
 		>
 			<Container>
 				<Stack
-					flexDirection="row"
+					flexDirection={{ xs: "column", xl: "row" }}
 					alignItems="center"
-					gap={10}
+					gap={{ xs: 2, xl: 10 }}
 				>
 					<Typography
 						flex={1}
 						textAlign="center"
-						fontSize={32}
 					>
 						<Typography
 							component="span"
-							fontSize={32}
+							fontSize={fontSize}
 							lineHeight={2}
 						>
 							با کمک شما تا کنون
@@ -40,7 +42,7 @@ export default function HomeBanner() {
 						<br />
 						<Typography
 							component="span"
-							fontSize={32}
+							fontSize={fontSize}
 							lineHeight={2}
 							fontWeight="bold"
 							color="secondary"
@@ -50,7 +52,7 @@ export default function HomeBanner() {
 						<br />
 						<Typography
 							component="span"
-							fontSize={32}
+							fontSize={fontSize}
 							lineHeight={2}
 						>
 							تحت حمایت موسسه قرار گرفته‌اند.

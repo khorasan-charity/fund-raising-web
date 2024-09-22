@@ -12,7 +12,7 @@ export default function Campaigns({ list }: ICampaignsProps) {
 	return (
 		<Box my={3}>
 			<Typography
-				fontSize={45}
+				fontSize={{ xs: 28, xl: 45 }}
 				textAlign="center"
 				mb={4.5}
 			>
@@ -25,7 +25,10 @@ export default function Campaigns({ list }: ICampaignsProps) {
 				{list.map((campaign, index) => (
 					<Grid
 						item
-						xs={4}
+						xs={12}
+						sm={12}
+						md={6}
+						xl={4}
 					>
 						<CampaignCard
 							key={index}

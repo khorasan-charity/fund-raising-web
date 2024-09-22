@@ -3,6 +3,7 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
 import Container from "@mui/material/Container";
 import styled from "@emotion/styled";
 import { PropsWithChildren } from "react";
@@ -34,15 +35,21 @@ export function AppHeader() {
 		>
 			<Container>
 				<Toolbar sx={{ py: 2 }}>
-					<Logo src={logo} />
-					<Typography
-						component="h1"
+					<Stack
 						sx={{ flexGrow: 1 }}
-						ml={2}
-						fontSize={28}
+						flexDirection="row"
+						alignItems="center"
 					>
-						{fa.app_header.title}
-					</Typography>
+						<Logo src={logo} />
+						<Typography
+							component="h1"
+							ml={2}
+							fontSize={28}
+							display={{ xs: "none", xl: "block" }}
+						>
+							{fa.app_header.title}
+						</Typography>
+					</Stack>
 					<AuthButton>{fa.app_header.register}</AuthButton>
 					<AuthButton>{fa.app_header.login}</AuthButton>
 				</Toolbar>
