@@ -15,7 +15,10 @@ const CampaignImg = styled.img`
 
 export default function CampaignCard({ campaign }: ICampaignCardProps) {
 	return (
-		<Card sx={{ cursor: "pointer" }}>
+		<Card
+			sx={{ cursor: "pointer" }}
+			elevation={4}
+		>
 			<CampaignImg src={campaign.imgUrl} />
 			<Box
 				px={2}
