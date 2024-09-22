@@ -4,6 +4,8 @@ import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Participation from "../campaign/participation/Participation";
+import { useNavigate } from "react-router-dom";
+import { routes } from "@/router/routes";
 
 interface ICampaignCardProps {
 	campaign: ICampaign;
@@ -14,10 +16,22 @@ const CampaignImg = styled.img`
 `;
 
 export default function CampaignCard({ campaign }: ICampaignCardProps) {
+	const navigate = useNavigate();
+
+	function onCardClick() {
+		navigate(
+			routes.campaignDetails.replace(
+				":campaignId",
+				String(campaign.id),
+			),
+		);
+	}
+
 	return (
 		<Card
 			sx={{ cursor: "pointer" }}
 			elevation={4}
+			onClick={onCardClick}
 		>
 			<CampaignImg src={campaign.imgUrl} />
 			<Box

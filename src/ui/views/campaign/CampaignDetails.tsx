@@ -1,3 +1,3 @@
 export default function CampaignDetails() {
-	return <div></div>;
+	return <div>Campaign Details Page</div>;
 }
