@@ -64,7 +64,10 @@ export default function CampaignCard({ campaign }: ICampaignCardProps) {
 					>
 						{campaign.collected / 1e6} میلیون تومان
 					</Typography>
-					<Typography fontWeight={"bold"}>
+					<Typography
+						fontWeight={"bold"}
+						fontSize={{ xs: 14, sm: 16 }}
+					>
 						توسط {campaign.peopleCount} نفر جمع آوری شده است.
 					</Typography>
 				</Box>

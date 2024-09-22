@@ -34,7 +34,7 @@ export function AppHeader() {
 			color="default"
 		>
 			<Container>
-				<Toolbar sx={{ py: 2 }}>
+				<Toolbar sx={{ py: 2, "&.MuiToolbar-root": { px: 0 } }}>
 					<Stack
 						sx={{ flexGrow: 1 }}
 						flexDirection="row"

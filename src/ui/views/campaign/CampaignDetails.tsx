@@ -1,3 +1,5 @@
+import { Container } from "@mui/material";
+
 export default function CampaignDetails() {
-	return <div>Campaign Details Page</div>;
+	return <Container>Campaign Details Page</Container>;
 }
