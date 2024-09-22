@@ -52,6 +52,7 @@ export default function Participation({
 				<Typography
 					component="span"
 					fontFamily="sans-serif"
+					ml={"1px"}
 				>
 					%
 				</Typography>
