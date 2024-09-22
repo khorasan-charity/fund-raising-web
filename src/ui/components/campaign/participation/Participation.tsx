@@ -5,6 +5,8 @@ import Box from "@mui/material/Box";
 interface IParticipationProps {
 	percent: number;
 	size?: number;
+	fontSize?: number;
+	percentFontSize?: number;
 }
 
 const Circle = styled(Box)<{ $size: number }>`
@@ -31,6 +33,8 @@ const Fill = styled(Box)<{ $height: number }>`
 export default function Participation({
 	percent,
 	size = 73,
+	fontSize = 22,
+	percentFontSize = 16,
 }: IParticipationProps) {
 	return (
 		<Circle
@@ -42,7 +46,7 @@ export default function Participation({
 			<Typography
 				component="span"
 				color="white"
-				fontSize={22}
+				fontSize={fontSize}
 				position="absolute"
 				top="50%"
 				left="50%"
@@ -53,6 +57,7 @@ export default function Participation({
 					component="span"
 					fontFamily="sans-serif"
 					ml={"1px"}
+					fontSize={percentFontSize}
 				>
 					%
 				</Typography>
