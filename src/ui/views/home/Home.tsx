@@ -31,7 +31,7 @@ const campaigns: ICampaign[] = [
 	},
 ];
 
-export function Home() {
+export default function Home() {
 	return (
 		<>
 			<HomeBanner />

@@ -1,11 +1,11 @@
 import "./App.css";
-import { Home } from "./ui/views";
 import { AppHeader, Rtl, Theme, Toast } from "./ui/components";
 import CssBaseline from "@mui/material/CssBaseline";
 import { theme } from "./ui/theme";
 import { useEffect, useState } from "react";
 import { delay } from "./app/utils";
 import { SplashScreen } from "./ui/components/splash-screen/SplashScreen";
+import { Outlet } from "react-router-dom";
 
 function Root() {
 	const [loading, setLoading] = useState(true);
@@ -27,7 +27,7 @@ function Root() {
 					<>
 						<Toast />
 						<AppHeader />
-						<Home />
+						<Outlet />
 					</>
 				) : (
 					<SplashScreen />
