@@ -14,6 +14,9 @@ import drug from "@/assets/images/drug.png";
 import Participation from "@/ui/components/campaign/participation/Participation";
 import MedicinesNeeded from "@/ui/components/campaign/campaign-details/MedicinesNeeded";
 import { IMedicine } from "@/domain";
+import { Link, useParams } from "react-router-dom";
+import { routes } from "@/router/routes";
+import { searchParams } from "@/router/search-params";
 
 const Img = styled.img`
 	width: 100%;
@@ -85,6 +88,8 @@ const medicines: IMedicine[] = [
 ];
 
 export default function CampaignDetailsPage() {
+	const { campaignId } = useParams();
+
 	return (
 		<Container>
 			<Stack
@@ -179,13 +184,17 @@ export default function CampaignDetailsPage() {
 							تامین شده است.
 						</Typography>
 						<Box mt="21px">
-							<Button
-								fullWidth
-								size="large"
-								color="secondary"
+							<Link
+								to={`${routes.payment}?${searchParams.campaignId}=${campaignId}`}
 							>
-								کمک نقدی
-							</Button>
+								<Button
+									fullWidth
+									size="large"
+									color="secondary"
+								>
+									کمک نقدی
+								</Button>
+							</Link>
 							<Button
 								fullWidth
 								size="large"

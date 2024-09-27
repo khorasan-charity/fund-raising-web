@@ -7,6 +7,7 @@ const Home = lazy(() => import("@/ui/views/home/Home"));
 const CampaignDetails = lazy(
 	() => import("@/ui/views/campaign/CampaignDetails"),
 );
+const Payment = lazy(() => import("@/ui/views/payment/Payment"));
 
 const lazyPage = (Page: LazyExoticComponent<() => JSX.Element>) => (
 	<Suspense fallback="loading page...">
@@ -26,6 +27,10 @@ export const router = createHashRouter([
 			{
 				path: routes.campaignDetails,
 				element: lazyPage(CampaignDetails),
+			},
+			{
+				path: routes.payment,
+				element: lazyPage(Payment),
 			},
 		],
 	},
