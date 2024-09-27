@@ -18,6 +18,7 @@ export default function Payment() {
 		message: "",
 		fullName: "",
 		description: "",
+		phoneNumber: "",
 	});
 	const [isPaying, setIsPaying] = useState(false);
 
@@ -80,6 +81,29 @@ export default function Payment() {
 					onChange={e =>
 						onFieldChange("fullName", e.target.value)
 					}
+				/>
+				<TextField
+					color="secondary"
+					sx={{
+						mt: 2,
+						"input[type='number']::-webkit-inner-spin-button":
+							{
+								opacity: 0,
+							},
+					}}
+					label="شماره موبایل"
+					type="number"
+					value={state.phoneNumber}
+					onChange={e =>
+						onFieldChange(
+							"phoneNumber",
+							e.target.value.toString(),
+						)
+					}
+					inputProps={{
+						min: 0,
+						dir: "ltr",
+					}}
 				/>
 				<TextField
 					color="secondary"
