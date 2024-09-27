@@ -10,21 +10,21 @@ interface IParticipationProps {
 	color?: "secondary" | "success";
 }
 
-const Circle = styled(Box)<{ $size: number }>`
+const Circle = styled(Box)<{ size: number }>`
 	display: inline-block;
 	vertical-align: middle;
-	width: ${props => props.$size}px;
-	height: ${props => props.$size}px;
+	width: ${props => props.size}px;
+	height: ${props => props.size}px;
 	border-radius: 50%;
 	text-align: center;
-	line-height: ${props => props.$size}px;
+	line-height: ${props => props.size}px;
 	overflow: hidden;
 	position: relative;
 	box-sizing: border-box;
 `;
 
-const Fill = styled(Box)<{ $height: number }>`
-	height: ${props => props.$height}%;
+const Fill = styled(Box)<{ height: number }>`
+	height: ${props => props.height}%;
 	width: 100%;
 	position: absolute;
 	bottom: 0;
@@ -48,7 +48,7 @@ export default function Participation({
 
 	return (
 		<Circle
-			$size={size}
+			size={size}
 			border="3px solid"
 			borderColor={colors.borderColor}
 			bgcolor={colors.bgColor}
@@ -74,7 +74,7 @@ export default function Participation({
 				{percent}
 			</Typography>
 			<Fill
-				$height={percent}
+				height={percent}
 				bgcolor={colors.fillBgColor}
 			/>
 		</Circle>

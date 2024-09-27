@@ -30,11 +30,9 @@ export default function Campaigns({ list }: ICampaignsProps) {
 						sm={12}
 						md={6}
 						xl={4}
+						key={index}
 					>
-						<CampaignCard
-							key={index}
-							campaign={campaign}
-						/>
+						<CampaignCard campaign={campaign} />
 					</Grid>
 				))}
 			</Grid>

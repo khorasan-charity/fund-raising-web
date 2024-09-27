@@ -1,26 +1,25 @@
 import useSearchParams from "@/app/hooks/use-get-search-param";
+import { delay } from "@/app/utils";
 import { searchParams } from "@/router/search-params";
 import { PriceInput } from "@/ui/components/common/price/PriceInput";
 import { fa } from "@/ui/i18n";
-import {
-	Button,
-	Container,
-	Stack,
-	TextField,
-	Typography,
-} from "@mui/material";
+import { LoadingButton } from "@mui/lab";
+import { Container, Stack, TextField, Typography } from "@mui/material";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export default function Payment() {
+	const navigate = useNavigate();
 	const { getParam } = useSearchParams();
 	const campaignId = getParam(searchParams.campaignId);
 	const [state, setState] = useState({
-		amount: 0,
+		amount: 100_000,
 		message: "",
 		fullName: "",
 		description: "",
 	});
+	const [isPaying, setIsPaying] = useState(false);
 
 	function onFieldChange<
 		K extends keyof typeof state,
@@ -32,18 +31,24 @@ export default function Payment() {
 		}));
 	}
 
-	function submitPayment() {
+	async function submitPayment() {
 		if (!state.amount) {
 			toast.error("وارد کردن مبلغ الزامیست");
 			return;
 		}
+
+		setIsPaying(true);
+		await delay(500);
+		setIsPaying(false);
+		toast.success("پرداخت با موفقیت انجام شد");
+		navigate(-1);
 	}
 
 	if (!campaignId) return <div>Something went wrong...</div>;
 
 	return (
 		<Container>
-			<Stack mt={3}>
+			<Stack py={2}>
 				<Typography>
 					شما در حال کمک رسانی به{" "}
 					<Typography
@@ -64,6 +69,7 @@ export default function Payment() {
 					required
 				/>
 				<TextField
+					color="secondary"
 					sx={{ mt: 2 }}
 					label="نام و نام خانوادگی"
 					value={state.fullName}
@@ -72,6 +78,7 @@ export default function Payment() {
 					}
 				/>
 				<TextField
+					color="secondary"
 					sx={{ mt: 2 }}
 					label="پیغام"
 					value={state.message}
@@ -80,6 +87,7 @@ export default function Payment() {
 					}
 				/>
 				<TextField
+					color="secondary"
 					sx={{ mt: 2 }}
 					label="توضیحات"
 					minRows={5}
@@ -89,12 +97,15 @@ export default function Payment() {
 						onFieldChange("description", e.target.value)
 					}
 				/>
-				<Button
+				<LoadingButton
+					color="secondary"
 					sx={{ mt: 4 }}
 					onClick={submitPayment}
+					loading={isPaying}
+					variant="contained"
 				>
 					پرداخت
-				</Button>
+				</LoadingButton>
 			</Stack>
 		</Container>
 	);
