@@ -54,6 +54,11 @@ export const theme = createTheme({
 		primary: {
 			main: "#ffcc00",
 		},
+		secondary: {
+			main: "#612987",
+			"200": "#893FBB",
+			"800": "#4E216C",
+		},
 		background: {
 			default: BACKGROUND_COLOR,
 		},

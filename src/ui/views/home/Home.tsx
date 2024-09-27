@@ -1,147 +1,46 @@
-import Stack from "@mui/material/Stack";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Dialog from "@mui/material/Dialog";
-import { Donate } from "@/ui/components/donate/Donate";
-import { MedicineList } from "@/ui/components/medicine/MedicineList";
-import { useEffect, useState } from "react";
-import { MedicineDao } from "@/domain";
-import { delay, randomInt } from "@/app/utils";
-import { fa } from "@/ui/i18n";
-import Typography from "@mui/material/Typography";
-import { MedicineListLoading } from "@/ui/components/medicine/MedicineListLoading";
-import { toast } from "react-toastify";
-import { useIsDesktop } from "@/app/hooks";
+import { ICampaign } from "@/domain/medicine/Campaign";
+import Container from "@mui/material/Container";
+import HomeBanner from "@/ui/components/home/Banner";
+import Campaigns from "@/ui/components/home/Campaigns";
 
-const MEDICINE_LIST: Array<MedicineDao> = Array.from({ length: 100 }).map(
-	(_, idx) => {
-		const total = randomInt(10, 100);
-		const unitPrice = randomInt(10000, 25000000);
-		const paidAmount = randomInt(0, total * unitPrice);
+import drug from "@/assets/images/drug.png";
+import radiology from "@/assets/images/radiology.png";
+import radiotherapy from "@/assets/images/radiotherapy.png";
 
-		return {
-			id: idx.toString(),
-			total,
-			paidAmount,
-			unitPrice,
-			title: "داروی مورد نیاز شماره " + (idx + 1).toString(),
-			imgUrl: "https://i.pravatar.cc/48",
-		};
+const campaigns: ICampaign[] = [
+	{
+		id: Number(Math.random().toFixed(2)),
+		title: "تهیه دارو برای کودکان (یادبود دکتر سارا ابراهیمی)",
+		collected: 250_000_000,
+		imgUrl: drug,
+		peopleCount: 459,
+		percent: 57,
 	},
-);
+	{
+		id: Number(Math.random().toFixed(2)),
+		title: "تصویربرداری",
+		collected: 37_000_000,
+		imgUrl: radiology,
+		peopleCount: 59,
+		percent: 25,
+	},
+	{
+		id: Number(Math.random().toFixed(2)),
+		title: "رادیوتراپی",
+		collected: 180_000_000,
+		imgUrl: radiotherapy,
+		peopleCount: 313,
+		percent: 90,
+	},
+];
 
-const getMedicineList = async () => {
-	await delay(1000);
-	return Promise.resolve(MEDICINE_LIST);
-};
-
-const MIN_PRICE = 100000;
-
-export function Home() {
-	const [modal, setModal] = useState(false);
-	const isDesktop = useIsDesktop();
-	const [medicineList, setMedicineList] = useState<Array<MedicineDao>>(
-		[],
-	);
-	const [loading, setLoading] = useState(false);
-
-	const fetchMedicineList = async () => {
-		setLoading(true);
-		const response = await getMedicineList();
-		setMedicineList(response);
-		setLoading(false);
-	};
-
-	const showSuccessMsg = () => {
-		toast.success(fa.donate.successMsg);
-	};
-
-	const onPurchase = (donate: number) => {
-		const first = { ...medicineList[0] };
-		first.paidAmount += donate;
-		setMedicineList(old => [first, ...old.slice(1, old.length)]);
-		showSuccessMsg();
-	};
-
-	useEffect(() => {
-		fetchMedicineList();
-	}, []);
-
-	useEffect(() => {
-		if (isDesktop) {
-			setModal(false);
-		}
-	}, [isDesktop]);
-
+export default function Home() {
 	return (
 		<>
-			<Stack
-				direction={{ lg: "row-reverse" }}
-				my={2}
-			>
-				<Box
-					flex={1}
-					mt={{ xs: 2, lg: 0 }}
-				>
-					<Stack
-						direction="row"
-						justifyContent="space-between"
-						alignItems="center"
-					>
-						<Typography variant="h6">
-							{fa.medicine_list.title}
-						</Typography>
-
-						{!isDesktop && (
-							<Button onClick={() => setModal(true)}>
-								{fa.donate.purchase}
-							</Button>
-						)}
-					</Stack>
-					<Stack
-						direction="row"
-						mt={2}
-						gap={2}
-					>
-						<Box flex={1}>
-							{loading ? (
-								<Stack gap={2}>
-									<MedicineListLoading />
-								</Stack>
-							) : (
-								<MedicineList data={medicineList} />
-							)}
-						</Box>
-						{isDesktop && (
-							<Box>
-								<Donate
-									min={MIN_PRICE}
-									onPurchase={onPurchase}
-								/>
-							</Box>
-						)}
-					</Stack>
-				</Box>
-			</Stack>
-
-			{/* Donate dialog */}
-			<Dialog
-				onClose={() => setModal(false)}
-				open={modal}
-				PaperProps={{
-					sx: {
-						borderRadius: 2,
-					},
-				}}
-			>
-				<Donate
-					onPurchase={val => {
-						setModal(false);
-						onPurchase(val);
-					}}
-					min={MIN_PRICE}
-				/>
-			</Dialog>
+			<HomeBanner />
+			<Container>
+				<Campaigns list={campaigns} />
+			</Container>
 		</>
 	);
 }

@@ -7,8 +7,9 @@ export default {
 		},
 	},
 	app_header: {
-		title: "کمک رسانی",
+		title: "موسسه حمایت از کودکان مبتلا به سرطان خراسان",
 		login: "ورود",
+		register: "ثبت نام",
 	},
 	home: {
 		title: "خوش آمدید",
