@@ -48,7 +48,11 @@ export default function Payment() {
 
 	return (
 		<Container>
-			<Stack py={2}>
+			<Stack
+				py={2}
+				maxWidth="sm"
+				marginInline={{ sm: "auto" }}
+			>
 				<Typography>
 					شما در حال کمک رسانی به{" "}
 					<Typography
