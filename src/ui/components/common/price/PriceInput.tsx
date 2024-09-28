@@ -30,6 +30,7 @@ export const PriceInput = ({ value, ...rest }: PriceProps) => {
 			FormHelperTextProps={{
 				sx: {
 					fontSize: 16,
+					textAlign: "center",
 				},
 			}}
 			value={value || ""}

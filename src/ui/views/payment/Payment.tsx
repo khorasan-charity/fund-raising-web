@@ -54,16 +54,19 @@ export default function Payment() {
 				maxWidth="sm"
 				marginInline={{ sm: "auto" }}
 			>
-				<Typography>
-					شما در حال کمک رسانی به{" "}
+				<Typography
+					fontSize={18}
+					textAlign="center"
+				>
+					کمک به{" "}
 					<Typography
 						component="span"
 						fontWeight="bold"
 						fontStyle="italic"
+						fontSize={18}
 					>
-						کمپین تهیه دارو بیاد سرکار خانم دکتر سارا ابراهیمی
+						کمپین تهیه دارو (دکتر سارا ابراهیمی)
 					</Typography>{" "}
-					هستید.
 				</Typography>
 				<PriceInput
 					label={fa.donate.inputLbl}
@@ -127,7 +130,7 @@ export default function Payment() {
 				/>
 				<LoadingButton
 					color="secondary"
-					sx={{ mt: 4 }}
+					sx={{ mt: 4, fontSize: 18 }}
 					onClick={submitPayment}
 					loading={isPaying}
 					variant="contained"
