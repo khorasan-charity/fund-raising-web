@@ -1,9 +1,11 @@
 import styled from "@emotion/styled";
 import {
+	Avatar,
 	Box,
 	Button,
 	Card,
 	Container,
+	Divider,
 	Stack,
 	Typography,
 } from "@mui/material";
@@ -17,6 +19,8 @@ import { ICampaignItem } from "@/domain";
 import { Link, useParams } from "react-router-dom";
 import { routes } from "@/router/routes";
 import { searchParams } from "@/router/search-params";
+import { deepPurple } from "@mui/material/colors";
+import { IDonation } from "@/domain/medicine/Donation";
 
 const Img = styled.img`
 	width: 100%;
@@ -86,6 +90,119 @@ const campaignItems: ICampaignItem[] = [
 		percent: 0,
 	},
 ];
+
+const donations: IDonation[] = [
+	{
+		id: Number(Math.random().toFixed(3)),
+		name: "محمد",
+		message: "به امید سلامتی همه کودکان",
+		amount: "۵ میلیون تومان",
+		time: "۳ ساعت پیش",
+	},
+	{
+		id: Number(Math.random().toFixed(3)),
+		name: "ناشناس",
+		message: null,
+		amount: "۱۰۰ هزار تومان",
+		time: "۵ ساعت پیش",
+	},
+	{
+		id: Number(Math.random().toFixed(3)),
+		name: "ناشناس",
+		message: "ان شالله همه زود خوب بشن",
+		amount: "۱ میلیون تومان",
+		time: "۱ روز پیش",
+	},
+	{
+		id: Number(Math.random().toFixed(3)),
+		name: "زهرا",
+		message: "بیاد سارا خانم",
+		amount: "۳ میلیون تومان",
+		time: "۱ روز پیش",
+	},
+	{
+		id: Number(Math.random().toFixed(3)),
+		name: "الهام",
+		message: null,
+		amount: "۳۰۰ هزار تومان",
+		time: "۲ روز پیش",
+	},
+	{
+		id: Number(Math.random().toFixed(3)),
+		name: "ناشناس",
+		message: null,
+		amount: "۱ میلیون تومان",
+		time: "۲ روز پیش",
+	},
+	{
+		id: Number(Math.random().toFixed(3)),
+		name: "نازنین",
+		message: null,
+		amount: "۵ میلیون تومان",
+		time: "۳ روز پیش",
+	},
+];
+
+interface ISupportItemProps {
+	donation: IDonation;
+}
+
+function SupportItem({ donation }: ISupportItemProps) {
+	return (
+		<Stack
+			direction="row"
+			justifyContent="space-between"
+		>
+			<Stack
+				direction="row"
+				alignItems="center"
+			>
+				<Avatar sx={{ bgcolor: deepPurple[200] }} />
+				<Stack
+					spacing={1}
+					alignItems="start"
+					justifyContent="space-around"
+					height="100%"
+					ml={1}
+				>
+					<Typography
+						fontWeight="bold"
+						fontSize={20}
+					>
+						{donation.name}
+					</Typography>
+					{donation.message && (
+						<Typography
+							fontSize={12}
+							color="gray"
+						>
+							{donation.message}
+						</Typography>
+					)}
+				</Stack>
+			</Stack>
+			<Stack
+				spacing={1}
+				alignItems="end"
+				justifyContent="space-around"
+			>
+				<Typography
+					color="secondary"
+					fontWeight={700}
+					fontSize={16}
+				>
+					{donation.amount}
+				</Typography>
+				<Typography
+					fontSize={12}
+					color="gray"
+				>
+					{donation.time}
+				</Typography>
+			</Stack>
+		</Stack>
+	);
+}
 
 export default function CampaignDetailsPage() {
 	const { campaignId } = useParams();
@@ -210,6 +327,46 @@ export default function CampaignDetailsPage() {
 							</Button>
 						</Box>
 					</Analytics>
+					<Stack height="370px">
+						<Stack
+							direction="row"
+							alignItems="center"
+							justifyContent="space-between"
+							p={2}
+						>
+							<Typography
+								fontSize={25}
+								fontWeight={700}
+							>
+								حامیان
+							</Typography>
+							<Typography
+								fontSize={25}
+								fontWeight={700}
+							>
+								۴۵۹ نفر
+							</Typography>
+						</Stack>
+						<Stack
+							flexGrow={1}
+							overflow="auto"
+							divider={
+								<Divider
+									orientation="horizontal"
+									flexItem
+								/>
+							}
+							spacing={2}
+							p={2}
+						>
+							{donations.map(donation => (
+								<SupportItem
+									donation={donation}
+									key={donation.name}
+								/>
+							))}
+						</Stack>
+					</Stack>
 				</Stack>
 			</Stack>
 		</Container>
