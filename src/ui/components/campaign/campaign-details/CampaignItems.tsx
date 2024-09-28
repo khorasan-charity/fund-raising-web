@@ -14,7 +14,7 @@ export default function CampaignItems({ items }: ICampaignItemsProps) {
 				fontSize={32}
 				fontWeight={700}
 			>
-				موارد مورد نیاز
+				نیازمندی‌ها
 			</Typography>
 			<Grid
 				container
