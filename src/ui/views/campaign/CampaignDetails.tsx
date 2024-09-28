@@ -11,7 +11,12 @@ import {
 } from "@mui/material";
 
 import drSara from "@/assets/images/dr-sara.png";
-import drug from "@/assets/images/drug.png";
+import medicine1 from "@/assets/images/medicine1.png";
+import medicine2 from "@/assets/images/medicine2.png";
+import medicine3 from "@/assets/images/medicine3.png";
+import medicine4 from "@/assets/images/medicine4.png";
+import medicine5 from "@/assets/images/medicine5.png";
+import medicine6 from "@/assets/images/medicine6.png";
 
 import Participation from "@/ui/components/campaign/participation/Participation";
 import CampaignItems from "@/ui/components/campaign/campaign-details/CampaignItems";
@@ -37,56 +42,56 @@ const Analytics = styled(Card)`
 const campaignItems: ICampaignItem[] = [
 	{
 		id: Number(Math.random().toFixed(3)),
-		imgUrl: drug,
+		imgUrl: medicine1,
 		paid: 66_880_000,
-		title: "قرص مرکاپتوپورین 50",
+		title: "قرص مرکاپتوپورین ۵۰",
 		total: 220,
 		unit: 304_000,
 		percent: 100,
 	},
 	{
 		id: Number(Math.random().toFixed(3)),
-		imgUrl: drug,
-		paid: 66_880_000,
-		title: "قرص مرکاپتوپورین 50",
-		total: 220,
-		unit: 304_000,
+		imgUrl: medicine2,
+		paid: 87_723_000,
+		title: "ویال متوتراکسات",
+		total: 190,
+		unit: 461_700,
 		percent: 100,
 	},
 	{
 		id: Number(Math.random().toFixed(3)),
-		imgUrl: drug,
-		paid: 66_880_000,
-		title: "قرص مرکاپتوپورین 50",
-		total: 220,
-		unit: 304_000,
+		imgUrl: medicine3,
+		paid: 53_300_000,
+		title: "شربت پوساکونازول ۴۰",
+		total: 100,
+		unit: 533_000,
 		percent: 100,
 	},
 	{
 		id: Number(Math.random().toFixed(3)),
-		imgUrl: drug,
-		paid: 66_880_000,
-		title: "قرص مرکاپتوپورین 50",
-		total: 220,
-		unit: 304_000,
+		imgUrl: medicine4,
+		paid: 42_097_000,
+		title: "قرص پازوپانیب ۲۰۰",
+		total: 20,
+		unit: 3_135_000,
 		percent: 67,
 	},
 	{
 		id: Number(Math.random().toFixed(3)),
-		imgUrl: drug,
-		paid: 66_880_000,
-		title: "قرص مرکاپتوپورین 50",
-		total: 220,
-		unit: 304_000,
+		imgUrl: medicine5,
+		paid: 71_280_000,
+		title: "ویال پمبرولیزومب",
+		total: 2,
+		unit: 35_640_000,
 		percent: 0,
 	},
 	{
 		id: Number(Math.random().toFixed(3)),
-		imgUrl: drug,
-		paid: 66_880_000,
-		title: "قرص مرکاپتوپورین 50",
-		total: 220,
-		unit: 304_000,
+		imgUrl: medicine6,
+		paid: 96_336_000,
+		title: "ویال ایمونوگلوبولین ۵",
+		total: 144,
+		unit: 669_000,
 		percent: 0,
 	},
 ];

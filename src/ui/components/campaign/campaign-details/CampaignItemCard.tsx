@@ -89,11 +89,11 @@ export default function CampaignItemCard({
 			>
 				<Row
 					label="قیمت واحد"
-					value={`${item.paid} تومان`}
+					value={`${item.unit} تومان`}
 				/>
 				<Row
 					label="مورد نیاز"
-					value={`از ${item.total} تومان`}
+					value={`${item.total} عدد`}
 				/>
 			</Box>
 
@@ -114,7 +114,7 @@ export default function CampaignItemCard({
 				>
 					<Typography
 						fontWeight={700}
-						fontSize={22}
+						fontSize={19}
 						color={isFull ? "success.main" : "secondary.main"}
 					>
 						{item.paid / 1e6} میلیون تومان
