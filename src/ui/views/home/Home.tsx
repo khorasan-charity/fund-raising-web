@@ -10,7 +10,7 @@ import radiotherapy from "@/assets/images/radiotherapy.png";
 const campaigns: ICampaign[] = [
 	{
 		id: Number(Math.random().toFixed(2)),
-		title: "تهیه دارو برای کودکان (یادبود دکتر سارا ابراهیمی)",
+		title: "تهیه دارو (دکتر سارا ابراهیمی)",
 		collected: 250_000_000,
 		imgUrl: drug,
 		peopleCount: 459,

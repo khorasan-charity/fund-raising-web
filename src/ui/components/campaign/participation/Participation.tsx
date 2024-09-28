@@ -49,7 +49,7 @@ export default function Participation({
 	return (
 		<Circle
 			size={size}
-			border="3px solid"
+			border={`${size / 15}px solid`}
 			borderColor={colors.borderColor}
 			bgcolor={colors.bgColor}
 		>

@@ -11,8 +11,8 @@ import { PropsWithChildren } from "react";
 import logo from "@/assets/images/logo.png";
 
 const Logo = styled.img`
-	width: 64px;
-	height: 64px;
+	width: 48px;
+	height: 48px;
 `;
 
 function AuthButton({ children }: PropsWithChildren) {
@@ -44,7 +44,7 @@ export function AppHeader() {
 						<Typography
 							component="h1"
 							ml={2}
-							fontSize={28}
+							fontSize={24}
 							display={{ xs: "none", xl: "block" }}
 						>
 							{fa.app_header.title}

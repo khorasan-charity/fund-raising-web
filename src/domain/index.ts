@@ -1,1 +1,1 @@
-export * from "./medicine/Medicine";
+export * from "./medicine/CampaignItem";

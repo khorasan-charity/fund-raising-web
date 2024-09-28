@@ -15,7 +15,9 @@ const Child = styled.img`
 `;
 
 export default function HomeBanner() {
-	const fontSize = { xs: 22, lg: 28, xl: 32 };
+	const fontSizeLarge = { xs: 26, lg: 32, xl: 36 };
+	const fontSizeNormal = { xs: 20, lg: 26, xl: 30 };
+	const fontSizeSmall = { xs: 12, lg: 18, xl: 22 };
 
 	return (
 		<Box
@@ -34,28 +36,53 @@ export default function HomeBanner() {
 					>
 						<Typography
 							component="span"
-							fontSize={fontSize}
+							fontSize={fontSizeNormal}
 							lineHeight={2}
 						>
-							با کمک شما تا کنون
+							با کمک
+							<Typography
+								component="span"
+								fontSize={fontSizeLarge}
+								lineHeight={2}
+								fontWeight="bold"
+								color="secondary"
+							>
+								&nbsp;۴۵۹&nbsp;
+							</Typography>
+							حامی
 						</Typography>
 						<br />
 						<Typography
 							component="span"
-							fontSize={fontSize}
+							fontSize={fontSizeNormal}
 							lineHeight={2}
-							fontWeight="bold"
-							color="secondary"
 						>
-							4200 کودک
+							مبلغ
+							<Typography
+								component="span"
+								fontSize={fontSizeLarge}
+								lineHeight={2}
+								fontWeight="bold"
+								color="secondary"
+							>
+								&nbsp;۵۹۰٫۰۰۰٫۰۰۰&nbsp;
+								<Typography
+									component="span"
+									fontSize={fontSizeSmall}
+									fontWeight="bold"
+									color="secondary"
+								>
+									تومان&nbsp;
+								</Typography>
+							</Typography>
 						</Typography>
 						<br />
 						<Typography
 							component="span"
-							fontSize={fontSize}
+							fontSize={fontSizeNormal}
 							lineHeight={2}
 						>
-							تحت حمایت موسسه قرار گرفته‌اند.
+							جمع‌آوری شده است.
 						</Typography>
 					</Typography>
 					<Child src={child} />

@@ -12,8 +12,8 @@ import drSara from "@/assets/images/dr-sara.png";
 import drug from "@/assets/images/drug.png";
 
 import Participation from "@/ui/components/campaign/participation/Participation";
-import MedicinesNeeded from "@/ui/components/campaign/campaign-details/MedicinesNeeded";
-import { IMedicine } from "@/domain";
+import CampaignItems from "@/ui/components/campaign/campaign-details/CampaignItems";
+import { ICampaignItem } from "@/domain";
 import { Link, useParams } from "react-router-dom";
 import { routes } from "@/router/routes";
 import { searchParams } from "@/router/search-params";
@@ -30,7 +30,7 @@ const Analytics = styled(Card)`
 	text-align: center;
 `;
 
-const medicines: IMedicine[] = [
+const campaignItems: ICampaignItem[] = [
 	{
 		id: Number(Math.random().toFixed(3)),
 		imgUrl: drug,
@@ -103,6 +103,7 @@ export default function CampaignDetailsPage() {
 					height="calc(100vh - (96px + 8px))"
 					overflow="auto"
 					order={{ xs: 2, lg: 1 }}
+					p={1}
 				>
 					<Img src={drSara} />
 					<Typography
@@ -110,41 +111,44 @@ export default function CampaignDetailsPage() {
 						fontSize={32}
 						my={3}
 					>
-						کمپین تهیه دارو بیاد سرکار خانم دکتر سارا ابراهیمی
+						کمپین تهیه دارو (دکتر سارا ابراهیمی)
 					</Typography>
 					<Typography
 						fontSize={18}
 						lineHeight={"32px"}
 						textAlign="justify"
+						px={1}
 					>
-						خانم دکتر سارا ابراهیمی در تاریخ ۱۳۶۱/۳/۲۰ در تهران
+						دکتر سارا ابراهیمی در تاریخ ۱۳۶۱/۳/۲۰ در تهران
 						متولد شد. پس از پایان تحصیلات متوسطه در رشته شیمی
 						دانشگاه شهید بهشتی تهران و رشته داروسازی دانشگاه
 						آزاد تهران ادامه تحصیل داد. به جهت علاقه به کار در
 						حوزه سلامت، رشته داروسازی را انتخاب و نهایتا با
 						مدرک دکترای داروسازی فارغ التحصیل شد. بعد از پایان
-						تحصیلات، به لحاظ علاقه به ماندن در ایران و عشق به
-						خانواده، در شرکت‌های داروسازی تهران مشغول به کار
-						شد. ایشان حدود ۱۶ سال در این زمینه سابقه کار داشته
-						است. متاسفانه در تاریخ ۱۴۰۱/۱/۱۰ در شهر سلمان‌شهر
-						(متل قو سابق) در یک حادثه‌ی ناگوار و با برخورد یک
-						خودرو به ایشان زندگی دنیا را ترک کرد. از نظر
-						اطرافیان وی، او شخصیتی مهربان، مسئولیت‌پذیر بخصوص
-						در قبال خانواده و اطرافیان، دست و دلباز، آراسته و
-						مرتب، پیش‌قدم در کمک و یاری به دیگران در تهیه دارو
-						و امور خیر، خالص و بی غل و غش و رها از کینه و کدورت
-						و سیاهی‌های دنیا، داشته است. این نرم‌افزار و این
-						کمپین بیاد ایشان و با حمایت مالی مادر بزرگوار ایشان
-						ساخته شده ست.
+						تحصیلات، به دلیل علاقه به کشور و خانواده‌اش در
+						ایران ماند و در شرکت‌های داروسازی تهران مشغول به
+						کار شد. ایشان حدود ۱۶ سال در این زمینه فعالیت کرد.
+						متاسفانه در تاریخ ۱۴۰۱/۱/۱۰ در شهر سلمان‌شهر (متل
+						قو سابق) در یک حادثه‌ی ناگوار و با برخورد یک خودرو
+						به ایشان زندگی دنیا را ترک کرد. از ویژگی‌های شخصیتی
+						بارز ایشان می‌توان به مهربانی، مسئولیت‌پذیری (بخصوص
+						در قبال خانواده و اطرافیان)، آراستگی و مرتب بودن،
+						پیش‌قدم در کمک و یاری به دیگران در تهیه دارو و امور
+						خیر، خالص و بی غل و غش، رها از کینه، کدورت و
+						سیاهی‌های دنیا اشاره کرد.
+						<br />
+						<br />
+						این نرم‌افزار و این کمپین بیاد ایشان و با حمایت
+						مالی مادر بزرگوار ایشان ساخته شده ست.
 					</Typography>
 
-					<MedicinesNeeded medicines={medicines} />
+					<CampaignItems items={campaignItems} />
 				</Stack>
 				<Stack
 					width={{ xs: "100%", lg: 400 }}
 					order={{ xs: 1, lg: 1 }}
 				>
-					<Analytics>
+					<Analytics elevation={3}>
 						<Box mt={5.5}>
 							<Participation
 								size={133}

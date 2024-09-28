@@ -7,7 +7,7 @@ export default {
 		},
 	},
 	app_header: {
-		title: "موسسه حمایت از کودکان مبتلا به سرطان خراسان",
+		title: "مهراسان",
 		login: "ورود",
 		register: "ثبت نام",
 	},

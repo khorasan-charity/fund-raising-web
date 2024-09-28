@@ -12,7 +12,7 @@ export default function Campaigns({ list }: ICampaignsProps) {
 	return (
 		<Box my={3}>
 			<Typography
-				fontSize={{ xs: 28, xl: 45 }}
+				fontSize={{ xs: 23, xl: 40 }}
 				textAlign="center"
 				mb={4.5}
 			>

@@ -68,7 +68,7 @@ export default function CampaignCard({ campaign }: ICampaignCardProps) {
 						fontWeight={"bold"}
 						fontSize={{ xs: 14, sm: 16 }}
 					>
-						توسط {campaign.peopleCount} نفر جمع آوری شده است.
+						توسط {campaign.peopleCount} حامی جمع آوری شده است.
 					</Typography>
 				</Box>
 			</Box>
