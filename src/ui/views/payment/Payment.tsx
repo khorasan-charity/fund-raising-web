@@ -1,4 +1,4 @@
-import useSearchParams from "@/app/hooks/use-get-search-param";
+import useSearchParams from "@/app/hooks/use-search-params";
 import { delay } from "@/app/utils";
 import { searchParams } from "@/router/search-params";
 import { PriceInput } from "@/ui/components/common/price/PriceInput";
