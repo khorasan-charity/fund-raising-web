@@ -269,6 +269,7 @@ export default function CampaignDetailsPage() {
 				<Stack
 					width={{ xs: "100%", lg: 400 }}
 					order={{ xs: 1, lg: 1 }}
+					display={{ xs: "contents", lg: "flex" }}
 				>
 					<Analytics elevation={3}>
 						<Box mt={5.5}>
@@ -332,7 +333,11 @@ export default function CampaignDetailsPage() {
 							</Button>
 						</Box>
 					</Analytics>
-					<Stack height="370px">
+					<Stack
+						height="370px"
+						order={4}
+						pb={2}
+					>
 						<Stack
 							direction="row"
 							alignItems="center"

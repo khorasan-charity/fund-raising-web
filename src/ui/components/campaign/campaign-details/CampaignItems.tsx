@@ -27,8 +27,7 @@ export default function CampaignItems({ items }: ICampaignItemsProps) {
 					<Grid
 						item
 						xs={12}
-						md={12}
-						xl={6}
+						md={6}
 						xxl={4}
 						key={item.id}
 					>
