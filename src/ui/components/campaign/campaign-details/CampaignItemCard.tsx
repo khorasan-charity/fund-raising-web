@@ -1,11 +1,9 @@
-import { ICampaignItem } from "@/domain";
 import styled from "@emotion/styled";
 import { Box, Card, Stack, Typography } from "@mui/material";
-
-import drug from "@/assets/images/drug.png";
 import Participation from "../participation/Participation";
-
-const fallbackImgUrl = drug;
+import { ICampaignItem } from "@/domain/campaign/IcampaignItem";
+import getRaisedPercent from "@/app/lib/percent";
+import getImageSource from "@/app/lib/get-image-source";
 
 const CampaignItemImg = styled.img`
 	width: 100%;
@@ -17,6 +15,7 @@ interface IRowProps {
 }
 
 function Row({ label, value }: IRowProps) {
+	const borderRadius = "9999px";
 	return (
 		<Stack
 			direction="row"
@@ -25,8 +24,8 @@ function Row({ label, value }: IRowProps) {
 		>
 			<Box
 				sx={{
-					borderStartStartRadius: "9999px",
-					borderEndStartRadius: "9999px",
+					borderStartStartRadius: borderRadius,
+					borderEndStartRadius: borderRadius,
 				}}
 				flex={1}
 				bgcolor="grey.200"
@@ -40,8 +39,8 @@ function Row({ label, value }: IRowProps) {
 				p={0.5}
 				flex={1.5}
 				sx={{
-					borderEndEndRadius: "9999px",
-					borderStartEndRadius: "9999px",
+					borderEndEndRadius: borderRadius,
+					borderStartEndRadius: borderRadius,
 				}}
 			>
 				<Typography
@@ -62,11 +61,12 @@ interface ICampaignItemCardProps {
 export default function CampaignItemCard({
 	item,
 }: ICampaignItemCardProps) {
-	const isFull = item.percent === 100;
+	const percent = getRaisedPercent(item.targetAmount, item.raisedAmount);
+	const isFull = percent === 100;
 	return (
 		<Card elevation={2}>
 			<Box position="relative">
-				<CampaignItemImg src={item.imgUrl || fallbackImgUrl} />
+				<CampaignItemImg src={getImageSource(item.imageFileId)} />
 				<Typography
 					position="absolute"
 					color="white"
@@ -89,11 +89,11 @@ export default function CampaignItemCard({
 			>
 				<Row
 					label="قیمت واحد"
-					value={`${item.unit} تومان`}
+					value={`${123456} تومان`}
 				/>
 				<Row
 					label="مورد نیاز"
-					value={`${item.total} عدد`}
+					value={`${123456} عدد`}
 				/>
 			</Box>
 
@@ -103,7 +103,7 @@ export default function CampaignItemCard({
 				mx={1}
 			>
 				<Participation
-					percent={item.percent}
+					percent={percent}
 					fontSize={32}
 					color={isFull ? "success" : "secondary"}
 				/>
@@ -117,13 +117,13 @@ export default function CampaignItemCard({
 						fontSize={19}
 						color={isFull ? "success.main" : "secondary.main"}
 					>
-						{item.paid / 1e6} میلیون تومان
+						{item.raisedAmount / 1e6} میلیون تومان
 					</Typography>
 					<Typography
 						fontWeight={"bold"}
 						fontSize={{ xs: 14, sm: 16 }}
 					>
-						از {item.total} میلیون تومان
+						از {item.targetAmount / 1e6} میلیون تومان
 					</Typography>
 				</Box>
 			</Box>

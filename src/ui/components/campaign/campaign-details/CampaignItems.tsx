@@ -1,6 +1,6 @@
-import { ICampaignItem } from "@/domain";
 import { Box, Grid, Typography } from "@mui/material";
 import CampaignItemCard from "./CampaignItemCard";
+import { ICampaignItem } from "@/domain/campaign/IcampaignItem";
 
 interface ICampaignItemsProps {
 	items: ICampaignItem[];

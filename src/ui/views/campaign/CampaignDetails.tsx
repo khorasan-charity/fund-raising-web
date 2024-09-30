@@ -10,17 +10,8 @@ import {
 	Typography,
 } from "@mui/material";
 
-import drSara from "@/assets/images/dr-sara.png";
-import medicine1 from "@/assets/images/medicine1.png";
-import medicine2 from "@/assets/images/medicine2.png";
-import medicine3 from "@/assets/images/medicine3.png";
-import medicine4 from "@/assets/images/medicine4.png";
-import medicine5 from "@/assets/images/medicine5.png";
-import medicine6 from "@/assets/images/medicine6.png";
-
 import Participation from "@/ui/components/campaign/participation/Participation";
 import CampaignItems from "@/ui/components/campaign/campaign-details/CampaignItems";
-import { ICampaignItem } from "@/domain";
 import { Link, useParams } from "react-router-dom";
 import { routes } from "@/router/routes";
 import { searchParams } from "@/router/search-params";
@@ -29,6 +20,8 @@ import { IDonation } from "@/domain/medicine/Donation";
 import useCampaignDetails from "@/app/services/use-campaign-details";
 import getRaisedPercent from "@/app/lib/percent";
 import { fa } from "@/ui/i18n";
+import getImageSource from "@/app/lib/get-image-source";
+import useCampaignItems from "@/app/services/use-campaign-items";
 
 const Img = styled.img`
 	width: 100%;
@@ -41,63 +34,6 @@ const Analytics = styled(Card)`
 	padding: 30px;
 	text-align: center;
 `;
-
-const campaignItems: ICampaignItem[] = [
-	{
-		id: Number(Math.random().toFixed(3)),
-		imgUrl: medicine1,
-		paid: 66_880_000,
-		title: "قرص مرکاپتوپورین ۵۰",
-		total: 220,
-		unit: 304_000,
-		percent: 100,
-	},
-	{
-		id: Number(Math.random().toFixed(3)),
-		imgUrl: medicine2,
-		paid: 87_723_000,
-		title: "ویال متوتراکسات",
-		total: 190,
-		unit: 461_700,
-		percent: 100,
-	},
-	{
-		id: Number(Math.random().toFixed(3)),
-		imgUrl: medicine3,
-		paid: 53_300_000,
-		title: "شربت پوساکونازول ۴۰",
-		total: 100,
-		unit: 533_000,
-		percent: 100,
-	},
-	{
-		id: Number(Math.random().toFixed(3)),
-		imgUrl: medicine4,
-		paid: 42_097_000,
-		title: "قرص پازوپانیب ۲۰۰",
-		total: 20,
-		unit: 3_135_000,
-		percent: 67,
-	},
-	{
-		id: Number(Math.random().toFixed(3)),
-		imgUrl: medicine5,
-		paid: 71_280_000,
-		title: "ویال پمبرولیزومب",
-		total: 2,
-		unit: 35_640_000,
-		percent: 0,
-	},
-	{
-		id: Number(Math.random().toFixed(3)),
-		imgUrl: medicine6,
-		paid: 96_336_000,
-		title: "ویال ایمونوگلوبولین ۵",
-		total: 144,
-		unit: 669_000,
-		percent: 0,
-	},
-];
 
 const donations: IDonation[] = [
 	{
@@ -215,6 +151,8 @@ function SupportItem({ donation }: ISupportItemProps) {
 export default function CampaignDetailsPage() {
 	const { campaignId } = useParams();
 	const { data, error } = useCampaignDetails(Number(campaignId));
+	const { data: campaignItems, error: campaignItemsError } =
+		useCampaignItems(Number(campaignId));
 
 	if (error || !data) return <></>;
 
@@ -233,7 +171,7 @@ export default function CampaignDetailsPage() {
 					order={{ xs: 2, lg: 1 }}
 					p={1}
 				>
-					<Img src={drSara} />
+					<Img src={getImageSource(data.coverImageFileId)} />
 					<Typography
 						fontWeight={700}
 						fontSize={32}
@@ -250,7 +188,9 @@ export default function CampaignDetailsPage() {
 						{data.description}
 					</Typography>
 
-					<CampaignItems items={campaignItems} />
+					{campaignItems && !campaignItemsError && (
+						<CampaignItems items={campaignItems} />
+					)}
 				</Stack>
 				<Stack
 					width={{ xs: "100%", lg: 400 }}
