@@ -8,12 +8,14 @@ export default {
 		supplied: "تامین شده است",
 		cashDonate: "کمک نقدی",
 		share: "اشتراک گذاری",
+		need: "مورد نیاز",
 		price: {
 			toman: "تومان",
 			rial: "ریال",
 			errorMsg: "مبلغ وارد شده معتبر نیست",
 			millionToman: "میلیون تومان",
 			targetAmount: "مبلغ مورد نظر",
+			unitPrice: "قیمت واحد",
 		},
 	},
 	app_header: {

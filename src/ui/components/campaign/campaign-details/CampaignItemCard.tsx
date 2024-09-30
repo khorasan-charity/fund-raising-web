@@ -4,6 +4,7 @@ import Participation from "../participation/Participation";
 import { ICampaignItem } from "@/domain/campaign/IcampaignItem";
 import getRaisedPercent from "@/app/lib/percent";
 import getImageSource from "@/app/lib/get-image-source";
+import { fa } from "@/ui/i18n";
 
 const CampaignItemImg = styled.img`
 	width: 100%;
@@ -88,11 +89,11 @@ export default function CampaignItemCard({
 				my={1}
 			>
 				<Row
-					label="قیمت واحد"
-					value={`${123456} تومان`}
+					label={fa.common.price.unitPrice}
+					value={`${123456} ${fa.common.price.toman}`}
 				/>
 				<Row
-					label="مورد نیاز"
+					label={fa.common.need}
 					value={`${123456} عدد`}
 				/>
 			</Box>
@@ -117,13 +118,15 @@ export default function CampaignItemCard({
 						fontSize={19}
 						color={isFull ? "success.main" : "secondary.main"}
 					>
-						{item.raisedAmount / 1e6} میلیون تومان
+						{item.raisedAmount / 1e6}{" "}
+						{fa.common.price.millionToman}
 					</Typography>
 					<Typography
 						fontWeight={"bold"}
 						fontSize={{ xs: 14, sm: 16 }}
 					>
-						از {item.targetAmount / 1e6} میلیون تومان
+						{fa.common.from} {item.targetAmount / 1e6}{" "}
+						{fa.common.price.millionToman}
 					</Typography>
 				</Box>
 			</Box>
