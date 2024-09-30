@@ -26,6 +26,9 @@ import { routes } from "@/router/routes";
 import { searchParams } from "@/router/search-params";
 import { deepPurple } from "@mui/material/colors";
 import { IDonation } from "@/domain/medicine/Donation";
+import useCampaignDetails from "@/app/services/use-campaign-details";
+import getRaisedPercent from "@/app/lib/percent";
+import { fa } from "@/ui/i18n";
 
 const Img = styled.img`
 	width: 100%;
@@ -211,6 +214,9 @@ function SupportItem({ donation }: ISupportItemProps) {
 
 export default function CampaignDetailsPage() {
 	const { campaignId } = useParams();
+	const { data, error } = useCampaignDetails(Number(campaignId));
+
+	if (error || !data) return <></>;
 
 	return (
 		<Container>
@@ -233,7 +239,7 @@ export default function CampaignDetailsPage() {
 						fontSize={32}
 						my={3}
 					>
-						کمپین تهیه دارو (دکتر سارا ابراهیمی)
+						{data.title}
 					</Typography>
 					<Typography
 						fontSize={18}
@@ -241,27 +247,7 @@ export default function CampaignDetailsPage() {
 						textAlign="justify"
 						px={1}
 					>
-						دکتر سارا ابراهیمی در تاریخ ۱۳۶۱/۳/۲۰ در تهران
-						متولد شد. پس از پایان تحصیلات متوسطه در رشته شیمی
-						دانشگاه شهید بهشتی تهران و رشته داروسازی دانشگاه
-						آزاد تهران ادامه تحصیل داد. به جهت علاقه به کار در
-						حوزه سلامت، رشته داروسازی را انتخاب و نهایتا با
-						مدرک دکترای داروسازی فارغ التحصیل شد. بعد از پایان
-						تحصیلات، به دلیل علاقه به کشور و خانواده‌اش در
-						ایران ماند و در شرکت‌های داروسازی تهران مشغول به
-						کار شد. ایشان حدود ۱۶ سال در این زمینه فعالیت کرد.
-						متاسفانه در تاریخ ۱۴۰۱/۱/۱۰ در شهر سلمان‌شهر (متل
-						قو سابق) در یک حادثه‌ی ناگوار و با برخورد یک خودرو
-						به ایشان زندگی دنیا را ترک کرد. از ویژگی‌های شخصیتی
-						بارز ایشان می‌توان به مهربانی، مسئولیت‌پذیری (بخصوص
-						در قبال خانواده و اطرافیان)، آراستگی و مرتب بودن،
-						پیش‌قدم در کمک و یاری به دیگران در تهیه دارو و امور
-						خیر، خالص و بی غل و غش، رها از کینه، کدورت و
-						سیاهی‌های دنیا اشاره کرد.
-						<br />
-						<br />
-						این نرم‌افزار و این کمپین بیاد ایشان و با حمایت
-						مالی مادر بزرگوار ایشان ساخته شده ست.
+						{data.description}
 					</Typography>
 
 					<CampaignItems items={campaignItems} />
@@ -275,7 +261,10 @@ export default function CampaignDetailsPage() {
 						<Box mt={5.5}>
 							<Participation
 								size={133}
-								percent={57}
+								percent={getRaisedPercent(
+									data.targetAmount,
+									data.raisedAmount,
+								)}
 								fontSize={48}
 								percentFontSize={22}
 							/>
@@ -286,29 +275,31 @@ export default function CampaignDetailsPage() {
 							fontWeight={700}
 							mt="51px"
 						>
-							۲۵۰ میلیون تومان
+							{data.raisedAmount / 1e6}{" "}
+							{fa.common.price.millionToman}
 						</Typography>
 						<Typography mt="6px">
-							از{" "}
+							{fa.common.from}{" "}
 							<Typography
 								component="span"
 								color="secondary.main"
 								lineHeight="24px"
 							>
-								۴۳۸ میلیون تومان
+								{data.targetAmount / 1e6}{" "}
+								{fa.common.price.millionToman}
 							</Typography>{" "}
-							مبلغ مورد نظر
+							{fa.common.price.targetAmount}
 						</Typography>
 						<Typography>
-							توسط{" "}
+							{fa.common.by}{" "}
 							<Typography
 								component="span"
 								color="success.light"
 								lineHeight="24px"
 							>
-								۴۵۹ حامی
+								{data.raiseCount} {fa.common.supporter}
 							</Typography>{" "}
-							تامین شده است.
+							{fa.common.supplied}.
 						</Typography>
 						<Box mt="21px">
 							<Link
@@ -319,7 +310,7 @@ export default function CampaignDetailsPage() {
 									size="large"
 									color="secondary"
 								>
-									کمک نقدی
+									{fa.common.cashDonate}
 								</Button>
 							</Link>
 							<Button
@@ -329,7 +320,7 @@ export default function CampaignDetailsPage() {
 								color="inherit"
 								variant="outlined"
 							>
-								اشتراک گذاری
+								{fa.common.share}
 							</Button>
 						</Box>
 					</Analytics>
@@ -348,13 +339,13 @@ export default function CampaignDetailsPage() {
 								fontSize={25}
 								fontWeight={700}
 							>
-								حامیان
+								{fa.common.supporters}
 							</Typography>
 							<Typography
 								fontSize={25}
 								fontWeight={700}
 							>
-								۴۵۹ نفر
+								{data.raiseCount} {fa.common.count}
 							</Typography>
 						</Stack>
 						<Stack

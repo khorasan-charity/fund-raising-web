@@ -1,9 +1,19 @@
 export default {
 	common: {
+		from: "از",
+		by: "توسط",
+		supporter: "حامی",
+		supporters: "حامیان",
+		count: "نفر",
+		supplied: "تامین شده است",
+		cashDonate: "کمک نقدی",
+		share: "اشتراک گذاری",
 		price: {
 			toman: "تومان",
 			rial: "ریال",
 			errorMsg: "مبلغ وارد شده معتبر نیست",
+			millionToman: "میلیون تومان",
+			targetAmount: "مبلغ مورد نظر",
 		},
 	},
 	app_header: {
