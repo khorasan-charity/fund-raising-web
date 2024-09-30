@@ -1,5 +1,5 @@
 import useSearchParams from "@/app/hooks/use-search-params";
-import { delay } from "@/app/utils";
+import { delay } from "@/app/lib";
 import { searchParams } from "@/router/search-params";
 import { PriceInput } from "@/ui/components/common/price/PriceInput";
 import { fa } from "@/ui/i18n";

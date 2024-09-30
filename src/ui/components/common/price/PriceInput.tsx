@@ -1,4 +1,4 @@
-import { split } from "@/app/utils/price";
+import { split } from "@/app/lib/price";
 import { fa } from "@/ui/i18n";
 import TextField, { type TextFieldProps } from "@mui/material/TextField";
 import type { ChangeEvent } from "react";

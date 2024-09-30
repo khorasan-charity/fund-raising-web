@@ -37,4 +37,9 @@ export default {
 	splash_screen: {
 		loading_msg: "در حال بارگذاری برنامه",
 	},
+	campaign: {
+		list: {
+			currentCampaigns: "کمپین‌های جاری",
+		},
+	},
 };

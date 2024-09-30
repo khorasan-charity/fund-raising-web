@@ -4,7 +4,7 @@ import Card from "@mui/material/Card";
 import Avatar from "@mui/material/Avatar";
 import { Typography } from "@mui/material";
 import { fa } from "@/ui/i18n";
-import { split } from "@/app/utils/price";
+import { split } from "@/app/lib/price";
 
 const Data = ({ title, data }: { title: string; data: string }) => {
 	return (

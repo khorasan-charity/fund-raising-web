@@ -5,7 +5,7 @@ import { useState } from "react";
 import { fa } from "@/ui/i18n";
 import { PriceInput } from "../common/price/PriceInput";
 import LoadingButton from "@mui/lab/LoadingButton";
-import { delay } from "@/app/utils";
+import { delay } from "@/app/lib";
 
 interface DonateProps {
 	min?: number;

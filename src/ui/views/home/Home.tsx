@@ -1,45 +1,19 @@
-import { ICampaign } from "@/domain/medicine/Campaign";
 import Container from "@mui/material/Container";
 import HomeBanner from "@/ui/components/home/Banner";
 import Campaigns from "@/ui/components/home/Campaigns";
 
-import drug from "@/assets/images/drug.png";
-import radiology from "@/assets/images/radiology.png";
-import radiotherapy from "@/assets/images/radiotherapy.png";
-
-const campaigns: ICampaign[] = [
-	{
-		id: Number(Math.random().toFixed(2)),
-		title: "تهیه دارو (دکتر سارا ابراهیمی)",
-		collected: 250_000_000,
-		imgUrl: drug,
-		peopleCount: 459,
-		percent: 57,
-	},
-	{
-		id: Number(Math.random().toFixed(2)),
-		title: "تصویربرداری",
-		collected: 37_000_000,
-		imgUrl: radiology,
-		peopleCount: 59,
-		percent: 25,
-	},
-	{
-		id: Number(Math.random().toFixed(2)),
-		title: "رادیوتراپی",
-		collected: 180_000_000,
-		imgUrl: radiotherapy,
-		peopleCount: 313,
-		percent: 90,
-	},
-];
+import useCampaignList from "@/app/services/use-campaign-list";
 
 export default function Home() {
+	const { data, error } = useCampaignList();
+
+	if (error) return <></>;
+
 	return (
 		<>
 			<HomeBanner />
 			<Container>
-				<Campaigns list={campaigns} />
+				<Campaigns list={data?.items ?? []} />
 			</Container>
 		</>
 	);

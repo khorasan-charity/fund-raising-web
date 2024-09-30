@@ -1,4 +1,3 @@
-import { ICampaign } from "@/domain/medicine/Campaign";
 import styled from "@emotion/styled";
 import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
@@ -6,6 +5,13 @@ import Box from "@mui/material/Box";
 import Participation from "../campaign/participation/Participation";
 import { useNavigate } from "react-router-dom";
 import { routes } from "@/router/routes";
+import { ICampaign } from "@/domain/campaign/ICampaign";
+import { apiBaseUrl } from "@/app/lib/env";
+
+import drug from "@/assets/images/drug.png";
+import getRaisedPercent from "@/app/lib/percent";
+
+const fallbackImage = drug;
 
 interface ICampaignCardProps {
 	campaign: ICampaign;
@@ -33,7 +39,13 @@ export default function CampaignCard({ campaign }: ICampaignCardProps) {
 			elevation={4}
 			onClick={onCardClick}
 		>
-			<CampaignImg src={campaign.imgUrl} />
+			<CampaignImg
+				src={
+					campaign.thumbnailImageFileId
+						? `${apiBaseUrl}/file/download/${campaign.thumbnailImageFileId}`
+						: fallbackImage
+				}
+			/>
 			<Box
 				px={2}
 				mt={1}
@@ -51,7 +63,12 @@ export default function CampaignCard({ campaign }: ICampaignCardProps) {
 				mt={3}
 				pb={2}
 			>
-				<Participation percent={campaign.percent} />
+				<Participation
+					percent={getRaisedPercent(
+						campaign.targetAmount,
+						campaign.raisedAmount,
+					)}
+				/>
 				<Box
 					display="inline-block"
 					ml="10px"
@@ -62,13 +79,13 @@ export default function CampaignCard({ campaign }: ICampaignCardProps) {
 						fontSize={22}
 						color="secondary"
 					>
-						{campaign.collected / 1e6} میلیون تومان
+						{campaign.raisedAmount / 1e6} میلیون تومان
 					</Typography>
 					<Typography
 						fontWeight={"bold"}
 						fontSize={{ xs: 14, sm: 16 }}
 					>
-						توسط {campaign.peopleCount} حامی جمع آوری شده است.
+						توسط {campaign.raiseCount} حامی جمع آوری شده است.
 					</Typography>
 				</Box>
 			</Box>

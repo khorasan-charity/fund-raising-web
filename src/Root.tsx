@@ -3,7 +3,7 @@ import { AppHeader, Rtl, Theme, Toast } from "./ui/components";
 import CssBaseline from "@mui/material/CssBaseline";
 import { theme } from "./ui/theme";
 import { useEffect, useState } from "react";
-import { delay } from "./app/utils";
+import { delay } from "./app/lib";
 import { SplashScreen } from "./ui/components/splash-screen/SplashScreen";
 import { Outlet, ScrollRestoration } from "react-router-dom";
 

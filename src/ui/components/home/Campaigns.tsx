@@ -1,8 +1,9 @@
-import { ICampaign } from "@/domain/medicine/Campaign";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import CampaignCard from "./CampaignCard";
+import { ICampaign } from "@/domain/campaign/ICampaign";
+import { fa } from "@/ui/i18n";
 
 interface ICampaignsProps {
 	list: ICampaign[];
@@ -16,7 +17,7 @@ export default function Campaigns({ list }: ICampaignsProps) {
 				textAlign="center"
 				mb={4.5}
 			>
-				کمپین‌های جاری
+				{fa.campaign.list.currentCampaigns}
 			</Typography>
 			<Grid
 				container
