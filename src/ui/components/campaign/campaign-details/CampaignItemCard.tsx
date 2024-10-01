@@ -88,14 +88,13 @@ export default function CampaignItemCard({
 				mx={1}
 				my={1}
 			>
-				<Row
-					label={fa.common.price.unitPrice}
-					value={`${123456} ${fa.common.price.toman}`}
-				/>
-				<Row
-					label={fa.common.need}
-					value={`${123456} عدد`}
-				/>
+				{item.attributes.map(attr => (
+					<Row
+						key={attr.id}
+						label={attr.title}
+						value={`${attr.value} ${attr.valueTypeTitle}`}
+					/>
+				))}
 			</Box>
 
 			<Box
