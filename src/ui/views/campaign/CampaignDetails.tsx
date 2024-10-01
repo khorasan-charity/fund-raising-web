@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import getImageSource from "@/app/lib/get-image-source";
 import getRaisedPercent from "@/app/lib/percent";
 import useCampaignDetails from "@/app/services/use-campaign-details";
 import useCampaignItems from "@/app/services/use-campaign-items";
@@ -17,12 +16,7 @@ import Button from "@mui/material/Button/Button";
 import CampaignSupports from "@/ui/components/campaign/campaign-details/CampaignSupports";
 import Card from "@mui/material/Card/Card";
 import useCampaignDonations from "@/app/services/use-campaign-donations";
-
-const Img = styled.img`
-	width: 100%;
-	max-height: 490px;
-	height: 100%;
-`;
+import CampaignDescription from "@/ui/components/campaign/campaign-details/CampaignDescription";
 
 const Analytics = styled(Card)`
 	height: 490px;
@@ -55,22 +49,7 @@ export default function CampaignDetailsPage() {
 					order={{ xs: 2, lg: 1 }}
 					p={1}
 				>
-					<Img src={getImageSource(data.coverImageFileId)} />
-					<Typography
-						fontWeight={700}
-						fontSize={32}
-						my={3}
-					>
-						{data.title}
-					</Typography>
-					<Typography
-						fontSize={18}
-						lineHeight={"32px"}
-						textAlign="justify"
-						px={1}
-					>
-						{data.description}
-					</Typography>
+					<CampaignDescription data={data} />
 
 					{campaignItems && !campaignItemsError && (
 						<CampaignItems items={campaignItems} />

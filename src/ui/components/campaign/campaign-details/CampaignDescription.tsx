@@ -1,0 +1,39 @@
+import getImageSource from "@/app/lib/get-image-source";
+import { ICampaign } from "@/domain/campaign/ICampaign";
+import styled from "@emotion/styled";
+import Typography from "@mui/material/Typography/Typography";
+
+const Img = styled.img`
+	width: 100%;
+	max-height: 490px;
+	height: 100%;
+`;
+
+interface ICampaignDescriptionProps {
+	data: ICampaign;
+}
+
+export default function CampaignDescription({
+	data,
+}: ICampaignDescriptionProps) {
+	return (
+		<>
+			<Img src={getImageSource(data.coverImageFileId)} />
+			<Typography
+				fontWeight={700}
+				fontSize={32}
+				my={3}
+			>
+				{data.title}
+			</Typography>
+			<Typography
+				fontSize={18}
+				lineHeight={"32px"}
+				textAlign="justify"
+				px={1}
+			>
+				{data.description}
+			</Typography>
+		</>
+	);
+}
