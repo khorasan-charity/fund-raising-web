@@ -1,4 +1,4 @@
-import { ICampaignItem } from "@/domain/campaign/IcampaignItem";
+import { ICampaignItem } from "@/domain/campaign/ICampaignItem";
 import request from "../../base/request";
 
 export default function getCampaignItems(

@@ -1,10 +1,10 @@
 import styled from "@emotion/styled";
 import { Box, Card, Stack, Typography } from "@mui/material";
 import Participation from "../participation/Participation";
-import { ICampaignItem } from "@/domain/campaign/IcampaignItem";
 import getRaisedPercent from "@/app/lib/percent";
 import getImageSource from "@/app/lib/get-image-source";
 import { fa } from "@/ui/i18n";
+import { ICampaignItem } from "@/domain/campaign/ICampaignItem";
 
 const CampaignItemImg = styled.img`
 	width: 100%;
