@@ -19,7 +19,7 @@ export default function CampaignItems({ items }: ICampaignItemsProps) {
 			<Grid
 				container
 				spacing={3}
-				mt={4}
+				mt={1}
 				mb={2}
 				px={1}
 			>

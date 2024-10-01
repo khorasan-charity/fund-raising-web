@@ -16,7 +16,10 @@ import Button from "@mui/material/Button/Button";
 import CampaignSupports from "@/ui/components/campaign/campaign-details/CampaignSupports";
 import Card from "@mui/material/Card/Card";
 import useCampaignDonations from "@/app/services/use-campaign-donations";
-import CampaignDescription from "@/ui/components/campaign/campaign-details/CampaignDescription";
+import CampaignDescription, {
+	CampaignDescriptionLoading,
+} from "@/ui/components/campaign/campaign-details/CampaignDescription";
+import { Skeleton } from "@mui/material";
 
 const Analytics = styled(Card)`
 	height: 490px;
@@ -26,13 +29,15 @@ const Analytics = styled(Card)`
 
 export default function CampaignDetailsPage() {
 	const { campaignId } = useParams();
-	const { data, error } = useCampaignDetails(Number(campaignId));
+	const { data, error, isPending } = useCampaignDetails(
+		Number(campaignId),
+	);
 	const { data: campaignItems, error: campaignItemsError } =
 		useCampaignItems(Number(campaignId));
 	const { data: campaignDonations, error: campaignDonationsError } =
 		useCampaignDonations(Number(campaignId));
 
-	if (error || !data) return <></>;
+	if (error) return <></>;
 
 	return (
 		<Container>
@@ -49,7 +54,11 @@ export default function CampaignDetailsPage() {
 					order={{ xs: 2, lg: 1 }}
 					p={1}
 				>
-					<CampaignDescription data={data} />
+					{isPending ? (
+						<CampaignDescriptionLoading />
+					) : (
+						<CampaignDescription data={data} />
+					)}
 
 					{campaignItems && !campaignItemsError && (
 						<CampaignItems items={campaignItems} />
@@ -60,78 +69,83 @@ export default function CampaignDetailsPage() {
 					order={{ xs: 1, lg: 1 }}
 					display={{ xs: "contents", lg: "flex" }}
 				>
-					<Analytics
-						elevation={3}
-						sx={{ mt: 1 }}
-					>
-						<Box mt={5.5}>
-							<Participation
-								size={133}
-								percent={getRaisedPercent(
-									data.targetAmount,
-									data.raisedAmount,
-								)}
-								fontSize={48}
-								percentFontSize={22}
-							/>
-						</Box>
-						<Typography
-							color="secondary.main"
-							fontSize={32}
-							fontWeight={700}
-							mt="51px"
+					{isPending ? (
+						<AnalyticsLoading />
+					) : (
+						<Analytics
+							elevation={3}
+							sx={{ mt: 1 }}
 						>
-							{data.raisedAmount / 1e6}{" "}
-							{fa.common.price.millionToman}
-						</Typography>
-						<Typography mt="6px">
-							{fa.common.from}{" "}
+							<Box mt={5.5}>
+								<Participation
+									size={133}
+									percent={getRaisedPercent(
+										data.targetAmount,
+										data.raisedAmount,
+									)}
+									fontSize={48}
+									percentFontSize={22}
+								/>
+							</Box>
 							<Typography
-								component="span"
 								color="secondary.main"
-								lineHeight="24px"
+								fontSize={32}
+								fontWeight={700}
+								mt="51px"
 							>
-								{data.targetAmount / 1e6}{" "}
+								{data.raisedAmount / 1e6}{" "}
 								{fa.common.price.millionToman}
-							</Typography>{" "}
-							{fa.common.price.targetAmount}
-						</Typography>
-						<Typography>
-							{fa.common.by}{" "}
-							<Typography
-								component="span"
-								color="success.light"
-								lineHeight="24px"
-							>
-								{data.raiseCount} {fa.common.supporter}
-							</Typography>{" "}
-							{fa.common.supplied}.
-						</Typography>
-						<Box mt="21px">
-							<Link
-								to={`${routes.payment}?${searchParams.campaignId}=${campaignId}`}
-							>
+							</Typography>
+							<Typography mt="6px">
+								{fa.common.from}{" "}
+								<Typography
+									component="span"
+									color="secondary.main"
+									lineHeight="24px"
+								>
+									{data.targetAmount / 1e6}{" "}
+									{fa.common.price.millionToman}
+								</Typography>{" "}
+								{fa.common.price.targetAmount}
+							</Typography>
+							<Typography>
+								{fa.common.by}{" "}
+								<Typography
+									component="span"
+									color="success.light"
+									lineHeight="24px"
+								>
+									{data.raiseCount} {fa.common.supporter}
+								</Typography>{" "}
+								{fa.common.supplied}.
+							</Typography>
+							<Box mt="21px">
+								<Link
+									to={`${routes.payment}?${searchParams.campaignId}=${campaignId}`}
+								>
+									<Button
+										fullWidth
+										size="large"
+										color="secondary"
+									>
+										{fa.common.cashDonate}
+									</Button>
+								</Link>
 								<Button
 									fullWidth
 									size="large"
-									color="secondary"
+									sx={{ mt: "10px" }}
+									color="inherit"
+									variant="outlined"
 								>
-									{fa.common.cashDonate}
+									{fa.common.share}
 								</Button>
-							</Link>
-							<Button
-								fullWidth
-								size="large"
-								sx={{ mt: "10px" }}
-								color="inherit"
-								variant="outlined"
-							>
-								{fa.common.share}
-							</Button>
-						</Box>
-					</Analytics>
+							</Box>
+						</Analytics>
+					)}
 
-					{!campaignDonationsError &&
+					{data &&
+						!campaignDonationsError &&
 						campaignDonations &&
 						campaignDonations.items.length && (
 							<CampaignSupports
@@ -144,3 +158,11 @@ export default function CampaignDetailsPage() {
 		</Container>
 	);
 }
+
+const AnalyticsLoading = () => (
+	<Skeleton
+		width="100%"
+		height={490}
+		sx={{ mt: 1 }}
+	/>
+);

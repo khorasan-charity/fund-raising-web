@@ -1,6 +1,7 @@
 import getImageSource from "@/app/lib/get-image-source";
 import { ICampaign } from "@/domain/campaign/ICampaign";
 import styled from "@emotion/styled";
+import Skeleton from "@mui/material/Skeleton";
 import Typography from "@mui/material/Typography/Typography";
 
 const Img = styled.img`
@@ -34,6 +35,31 @@ export default function CampaignDescription({
 			>
 				{data.description}
 			</Typography>
+		</>
+	);
+}
+
+// loading
+
+const ImgLoading = styled(Skeleton)`
+	width: 100%;
+	max-height: 490px;
+	height: 100%;
+`;
+
+export function CampaignDescriptionLoading() {
+	return (
+		<>
+			<ImgLoading />
+			<Skeleton
+				variant="text"
+				sx={{ fontSize: 32, my: 3 }}
+			/>
+			<Skeleton
+				variant="rectangular"
+				width="100%"
+				sx={{ height: { xs: 200, lg: 400 } }}
+			/>
 		</>
 	);
 }
