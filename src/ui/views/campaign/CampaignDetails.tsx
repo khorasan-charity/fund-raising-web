@@ -37,8 +37,11 @@ export default function CampaignDetailsPage() {
 		error: campaignItemsError,
 		isPending: isCampaignItemsPending,
 	} = useCampaignItems(Number(campaignId));
-	const { data: campaignDonations, error: campaignDonationsError } =
-		useCampaignDonations(Number(campaignId));
+	const {
+		data: campaignDonations,
+		error: campaignDonationsError,
+		isPending: isCampaignDonationsPending,
+	} = useCampaignDonations(Number(campaignId));
 
 	if (error) return <></>;
 
@@ -152,7 +155,8 @@ export default function CampaignDetailsPage() {
 					{data &&
 						!campaignDonationsError &&
 						campaignDonations &&
-						campaignDonations.items.length && (
+						campaignDonations.items.length &&
+						!isCampaignDonationsPending && (
 							<CampaignSupports
 								donations={campaignDonations.items}
 								raiseCount={data.raiseCount}
