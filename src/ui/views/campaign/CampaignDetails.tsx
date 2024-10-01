@@ -81,7 +81,10 @@ export default function CampaignDetailsPage() {
 					order={{ xs: 1, lg: 1 }}
 					display={{ xs: "contents", lg: "flex" }}
 				>
-					<Analytics elevation={3}>
+					<Analytics
+						elevation={3}
+						sx={{ mt: 1 }}
+					>
 						<Box mt={5.5}>
 							<Participation
 								size={133}
