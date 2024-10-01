@@ -1,27 +1,22 @@
 import styled from "@emotion/styled";
-import {
-	Avatar,
-	Box,
-	Button,
-	Card,
-	Container,
-	Divider,
-	Stack,
-	Typography,
-} from "@mui/material";
-
-import Participation from "@/ui/components/campaign/participation/Participation";
-import CampaignItems from "@/ui/components/campaign/campaign-details/CampaignItems";
-import { Link, useParams } from "react-router-dom";
+import getImageSource from "@/app/lib/get-image-source";
+import getRaisedPercent from "@/app/lib/percent";
+import useCampaignDetails from "@/app/services/use-campaign-details";
+import useCampaignItems from "@/app/services/use-campaign-items";
 import { routes } from "@/router/routes";
 import { searchParams } from "@/router/search-params";
-import { deepPurple } from "@mui/material/colors";
-import { IDonation } from "@/domain/medicine/Donation";
-import useCampaignDetails from "@/app/services/use-campaign-details";
-import getRaisedPercent from "@/app/lib/percent";
+import CampaignItems from "@/ui/components/campaign/campaign-details/CampaignItems";
+import Participation from "@/ui/components/campaign/participation/Participation";
 import { fa } from "@/ui/i18n";
-import getImageSource from "@/app/lib/get-image-source";
-import useCampaignItems from "@/app/services/use-campaign-items";
+import { Link, useParams } from "react-router-dom";
+import Container from "@mui/material/Container/Container";
+import Stack from "@mui/material/Stack/Stack";
+import Typography from "@mui/material/Typography/Typography";
+import Box from "@mui/material/Box/Box";
+import Button from "@mui/material/Button/Button";
+import CampaignSupports from "@/ui/components/campaign/campaign-details/CampaignSupports";
+import Card from "@mui/material/Card/Card";
+import useCampaignDonations from "@/app/services/use-campaign-donations";
 
 const Img = styled.img`
 	width: 100%;
@@ -35,124 +30,13 @@ const Analytics = styled(Card)`
 	text-align: center;
 `;
 
-const donations: IDonation[] = [
-	{
-		id: Number(Math.random().toFixed(3)),
-		name: "محمد",
-		message: "به امید سلامتی همه کودکان",
-		amount: "۵ میلیون تومان",
-		time: "۳ ساعت پیش",
-	},
-	{
-		id: Number(Math.random().toFixed(3)),
-		name: "ناشناس",
-		message: null,
-		amount: "۱۰۰ هزار تومان",
-		time: "۵ ساعت پیش",
-	},
-	{
-		id: Number(Math.random().toFixed(3)),
-		name: "ناشناس",
-		message: "ان شالله همه زود خوب بشن",
-		amount: "۱ میلیون تومان",
-		time: "۱ روز پیش",
-	},
-	{
-		id: Number(Math.random().toFixed(3)),
-		name: "زهرا",
-		message: "بیاد سارا خانم",
-		amount: "۳ میلیون تومان",
-		time: "۱ روز پیش",
-	},
-	{
-		id: Number(Math.random().toFixed(3)),
-		name: "الهام",
-		message: null,
-		amount: "۳۰۰ هزار تومان",
-		time: "۲ روز پیش",
-	},
-	{
-		id: Number(Math.random().toFixed(3)),
-		name: "ناشناس",
-		message: null,
-		amount: "۱ میلیون تومان",
-		time: "۲ روز پیش",
-	},
-	{
-		id: Number(Math.random().toFixed(3)),
-		name: "نازنین",
-		message: null,
-		amount: "۵ میلیون تومان",
-		time: "۳ روز پیش",
-	},
-];
-
-interface ISupportItemProps {
-	donation: IDonation;
-}
-
-function SupportItem({ donation }: ISupportItemProps) {
-	return (
-		<Stack
-			direction="row"
-			justifyContent="space-between"
-		>
-			<Stack
-				direction="row"
-				alignItems="center"
-			>
-				<Avatar sx={{ bgcolor: deepPurple[200] }} />
-				<Stack
-					spacing={1}
-					alignItems="start"
-					justifyContent="space-around"
-					height="100%"
-					ml={1}
-				>
-					<Typography
-						fontWeight="bold"
-						fontSize={20}
-					>
-						{donation.name}
-					</Typography>
-					{donation.message && (
-						<Typography
-							fontSize={12}
-							color="gray"
-						>
-							{donation.message}
-						</Typography>
-					)}
-				</Stack>
-			</Stack>
-			<Stack
-				spacing={1}
-				alignItems="end"
-				justifyContent="space-around"
-			>
-				<Typography
-					color="secondary"
-					fontWeight={700}
-					fontSize={16}
-				>
-					{donation.amount}
-				</Typography>
-				<Typography
-					fontSize={12}
-					color="gray"
-				>
-					{donation.time}
-				</Typography>
-			</Stack>
-		</Stack>
-	);
-}
-
 export default function CampaignDetailsPage() {
 	const { campaignId } = useParams();
 	const { data, error } = useCampaignDetails(Number(campaignId));
 	const { data: campaignItems, error: campaignItemsError } =
 		useCampaignItems(Number(campaignId));
+	const { data: campaignDonations, error: campaignDonationsError } =
+		useCampaignDonations(Number(campaignId));
 
 	if (error || !data) return <></>;
 
@@ -264,50 +148,15 @@ export default function CampaignDetailsPage() {
 							</Button>
 						</Box>
 					</Analytics>
-					<Stack
-						height="370px"
-						order={4}
-						pb={2}
-					>
-						<Stack
-							direction="row"
-							alignItems="center"
-							justifyContent="space-between"
-							p={2}
-						>
-							<Typography
-								fontSize={25}
-								fontWeight={700}
-							>
-								{fa.common.supporters}
-							</Typography>
-							<Typography
-								fontSize={25}
-								fontWeight={700}
-							>
-								{data.raiseCount} {fa.common.count}
-							</Typography>
-						</Stack>
-						<Stack
-							flexGrow={1}
-							overflow="auto"
-							divider={
-								<Divider
-									orientation="horizontal"
-									flexItem
-								/>
-							}
-							spacing={2}
-							p={2}
-						>
-							{donations.map(donation => (
-								<SupportItem
-									donation={donation}
-									key={donation.name}
-								/>
-							))}
-						</Stack>
-					</Stack>
+
+					{!campaignDonationsError &&
+						campaignDonations &&
+						campaignDonations.items.length && (
+							<CampaignSupports
+								donations={campaignDonations.items}
+								raiseCount={data.raiseCount}
+							/>
+						)}
 				</Stack>
 			</Stack>
 		</Container>

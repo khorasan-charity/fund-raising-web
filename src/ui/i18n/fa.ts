@@ -9,6 +9,7 @@ export default {
 		cashDonate: "کمک نقدی",
 		share: "اشتراک گذاری",
 		need: "مورد نیاز",
+		anonymous: "ناشناس",
 		price: {
 			toman: "تومان",
 			rial: "ریال",
