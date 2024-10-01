@@ -10,7 +10,7 @@ const CampaignDetails = lazy(
 const Payment = lazy(() => import("@/ui/views/payment/Payment"));
 
 const lazyPage = (Page: LazyExoticComponent<() => JSX.Element>) => (
-	<Suspense fallback="loading page...">
+	<Suspense fallback={<></>}>
 		<Page />
 	</Suspense>
 );
