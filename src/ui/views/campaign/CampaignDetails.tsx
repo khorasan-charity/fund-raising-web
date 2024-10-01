@@ -32,8 +32,11 @@ export default function CampaignDetailsPage() {
 	const { data, error, isPending } = useCampaignDetails(
 		Number(campaignId),
 	);
-	const { data: campaignItems, error: campaignItemsError } =
-		useCampaignItems(Number(campaignId));
+	const {
+		data: campaignItems,
+		error: campaignItemsError,
+		isPending: isCampaignItemsPending,
+	} = useCampaignItems(Number(campaignId));
 	const { data: campaignDonations, error: campaignDonationsError } =
 		useCampaignDonations(Number(campaignId));
 
@@ -60,9 +63,11 @@ export default function CampaignDetailsPage() {
 						<CampaignDescription data={data} />
 					)}
 
-					{campaignItems && !campaignItemsError && (
-						<CampaignItems items={campaignItems} />
-					)}
+					{campaignItems &&
+						!campaignItemsError &&
+						!isCampaignItemsPending && (
+							<CampaignItems items={campaignItems} />
+						)}
 				</Stack>
 				<Stack
 					width={{ xs: "100%", lg: 400 }}
