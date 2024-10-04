@@ -66,7 +66,6 @@ export default function Payment() {
 			</Typography>
 			<form
 				action=""
-				target="_blank"
 				onSubmit={onSubmit}
 			>
 				<Stack
