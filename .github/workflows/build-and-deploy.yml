@@ -44,3 +44,15 @@ jobs:
           port: ${{ secrets.SSH_PORT || 22 }}
           source: "./dist/*"
           target: "/home/ubuntu/fundraising/ui"
+
+      - name: Set ownership and permissions for Nginx
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT || 22 }}
+          script: |
+            sudo chown -R ubuntu:www-data /home/ubuntu/fundraising/ui  # Set www-data as owner
+            sudo chmod -R 755 /home/ubuntu/fundraising/ui  # Set permissions to allow access
+
