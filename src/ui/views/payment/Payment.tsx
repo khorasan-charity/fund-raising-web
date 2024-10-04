@@ -1,6 +1,9 @@
 import useSearchParams from "@/app/hooks/use-search-params";
+import useCampaignDetails from "@/app/services/use-campaign-details";
 import { searchParams } from "@/router/search-params";
 import { PriceInput } from "@/ui/components/common/price/PriceInput";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 import { fa } from "@/ui/i18n";
 import { LoadingButton } from "@mui/lab";
 import { Container, Stack, TextField, Typography } from "@mui/material";
@@ -10,6 +13,9 @@ import { toast } from "react-toastify";
 export default function Payment() {
 	const { getParam } = useSearchParams();
 	const campaignId = getParam(searchParams.campaignId);
+	const { data, isPending, isError } = useCampaignDetails(
+		Number(campaignId),
+	);
 	const [state, setState] = useState({
 		amount: 100_000,
 		message: "",
@@ -32,9 +38,8 @@ export default function Payment() {
 		const form = new FormData(e.currentTarget);
 		const price = form.get("price");
 
-		if (!campaignId) {
+		if (isPending) {
 			e.preventDefault();
-			toast.error("خطا در پردازش اطلاعات");
 			return;
 		}
 
@@ -45,25 +50,37 @@ export default function Payment() {
 		}
 	}
 
-	if (!campaignId) return <div>Something went wrong...</div>;
+	if (!campaignId || isError) return <div>Something went wrong...</div>;
 
 	return (
 		<Container>
-			<Typography
-				fontSize={18}
-				textAlign="center"
-				mt={4}
-			>
-				کمک به{" "}
-				<Typography
-					component="span"
-					fontWeight="bold"
-					fontStyle="italic"
-					fontSize={18}
+			{isPending ? (
+				<Box
+					textAlign="center"
+					mt={4}
 				>
-					کمپین تهیه دارو (دکتر سارا ابراهیمی)
-				</Typography>{" "}
-			</Typography>
+					<CircularProgress
+						color="secondary"
+						size={32}
+					/>
+				</Box>
+			) : (
+				<Typography
+					fontSize={18}
+					textAlign="center"
+					mt={4}
+				>
+					کمک به{" "}
+					<Typography
+						component="span"
+						fontWeight="bold"
+						fontStyle="italic"
+						fontSize={18}
+					>
+						{data.title}
+					</Typography>{" "}
+				</Typography>
+			)}
 			<form
 				action=""
 				onSubmit={onSubmit}
@@ -145,9 +162,10 @@ export default function Payment() {
 					/>
 					<LoadingButton
 						color="secondary"
-						sx={{ mt: 4, fontSize: 18 }}
 						variant="contained"
 						type="submit"
+						sx={{ mt: 4, fontSize: 18 }}
+						disabled={isPending}
 					>
 						پرداخت
 					</LoadingButton>
