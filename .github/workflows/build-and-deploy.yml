@@ -36,7 +36,7 @@ jobs:
             rm -rf /home/ubuntu/fundraising/ui/*
 
       - name: Deploy to SSH server
-        uses: appleboy/scp-action@v0.2.0
+        uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
