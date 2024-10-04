@@ -31,6 +31,13 @@ export default function Payment() {
 	function onSubmit(e: FormEvent<HTMLFormElement>) {
 		const form = new FormData(e.currentTarget);
 		const price = form.get("price");
+
+		if (!campaignId) {
+			e.preventDefault();
+			toast.error("خطا در پردازش اطلاعات");
+			return;
+		}
+
 		if (!price) {
 			e.preventDefault();
 			toast.error("ورود مبلغ الزامی است");
