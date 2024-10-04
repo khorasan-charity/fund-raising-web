@@ -84,7 +84,7 @@ export default function CampaignDetailsPage() {
 							elevation={3}
 							sx={{ mt: 1 }}
 						>
-							<Box mt={5.5}>
+							<Box>
 								<Participation
 									size={133}
 									percent={getRaisedPercent(

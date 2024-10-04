@@ -5,7 +5,9 @@ import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { SxProps } from "@mui/material";
+import { Button, SxProps } from "@mui/material";
+import { Link } from "react-router-dom";
+import { routes } from "@/router/routes";
 
 function InfoItem({ label, value }: { label: string; value: string }) {
 	return (
@@ -28,6 +30,7 @@ function InfoItem({ label, value }: { label: string; value: string }) {
 export default function PaymentConfirm() {
 	const params = useSearchParams();
 	const trackingCode = params.getParam("trackingCode");
+	const campaign = params.getParam("campaign");
 	const amount = params.getParam("amount");
 	const success = Boolean(
 		params.getParam("success")?.toLowerCase() === "true",
@@ -56,6 +59,8 @@ export default function PaymentConfirm() {
 	} else {
 		msg = "پرداخت شما با شکست مواجه شد.";
 	}
+
+	if (!campaign) return <>Something went wrong...</>;
 
 	return (
 		<Container sx={{ mt: 10 }}>
@@ -96,6 +101,17 @@ export default function PaymentConfirm() {
 						/>
 					)}
 				</Box>
+
+				<Link
+					to={`${routes.campaignDetails.replace(":campaignId", campaign)}`}
+				>
+					<Button
+						color="secondary"
+						sx={{ mt: 4 }}
+					>
+						بازگشت به صفحه کمپین
+					</Button>
+				</Link>
 			</Stack>
 		</Container>
 	);
