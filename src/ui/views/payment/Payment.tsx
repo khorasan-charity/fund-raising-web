@@ -4,7 +4,8 @@ import { PriceInput } from "@/ui/components/common/price/PriceInput";
 import { fa } from "@/ui/i18n";
 import { LoadingButton } from "@mui/lab";
 import { Container, Stack, TextField, Typography } from "@mui/material";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
+import { toast } from "react-toastify";
 
 export default function Payment() {
 	const { getParam } = useSearchParams();
@@ -27,6 +28,16 @@ export default function Payment() {
 		}));
 	}
 
+	function onSubmit(e: FormEvent<HTMLFormElement>) {
+		const form = new FormData(e.currentTarget);
+		const price = form.get("price");
+		if (!price) {
+			e.preventDefault();
+			toast.error("ورود مبلغ الزامی است");
+			return;
+		}
+	}
+
 	if (!campaignId) return <div>Something went wrong...</div>;
 
 	return (
@@ -46,7 +57,11 @@ export default function Payment() {
 					کمپین تهیه دارو (دکتر سارا ابراهیمی)
 				</Typography>{" "}
 			</Typography>
-			<form action="">
+			<form
+				action=""
+				target="_blank"
+				onSubmit={onSubmit}
+			>
 				<Stack
 					py={2}
 					maxWidth="sm"
@@ -65,7 +80,6 @@ export default function Payment() {
 						sx={{ mt: 2 }}
 						value={state.amount}
 						onChange={val => onFieldChange("amount", val)}
-						required
 					/>
 					<TextField
 						color="secondary"
