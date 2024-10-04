@@ -34,7 +34,13 @@ export function AppHeader() {
 			color="default"
 		>
 			<Container>
-				<Toolbar sx={{ py: 2, "&.MuiToolbar-root": { px: 0 } }}>
+				<Toolbar
+					sx={{
+						py: 2,
+						height: 80,
+						"&.MuiToolbar-root": { px: 0 },
+					}}
+				>
 					<Stack
 						sx={{ flexGrow: 1 }}
 						flexDirection="row"

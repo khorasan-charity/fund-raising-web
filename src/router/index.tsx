@@ -9,6 +9,10 @@ const CampaignDetails = lazy(
 );
 const Payment = lazy(() => import("@/ui/views/payment/Payment"));
 
+const PaymentConfirm = lazy(
+	() => import("@/ui/views/payment/PaymentConfirm"),
+);
+
 const lazyPage = (Page: LazyExoticComponent<() => JSX.Element>) => (
 	<Suspense fallback={<></>}>
 		<Page />
@@ -31,6 +35,10 @@ export const router = createHashRouter([
 			{
 				path: routes.payment,
 				element: lazyPage(Payment),
+			},
+			{
+				path: routes.paymentConfirm,
+				element: lazyPage(PaymentConfirm),
 			},
 		],
 	},
