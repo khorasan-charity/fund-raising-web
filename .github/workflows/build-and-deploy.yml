@@ -44,6 +44,7 @@ jobs:
           port: ${{ secrets.SSH_PORT || 22 }}
           source: "./dist/*"
           target: "/home/ubuntu/fundraising/ui"
+          strip_components: 1
 
       - name: Set ownership and permissions for Nginx
         uses: appleboy/ssh-action@v0.1.10
