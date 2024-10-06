@@ -1,59 +1,58 @@
 name: Build and Deploy
 
 on:
-  push:
-    branches:
-      - main
+    push:
+        branches:
+            - main
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+    build:
+        runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'
-          #cache: 'pnpm'
+            - name: Set up Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: "20"
+                  #cache: 'pnpm'
 
-      - name: Install dependencies
-        run: npm install
+            - name: Install dependencies
+              run: npm install
 
-      - name: Build project
-        run: npm run build
+            - name: Build project
+              run: npm run build
 
-      - name: Remove old files from the server
-        uses: appleboy/ssh-action@v0.1.10
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: ${{ secrets.SSH_PORT || 22 }}
-          script: |
-            rm -rf /home/ubuntu/fundraising/ui/*
+            - name: Remove old files from the server
+              uses: appleboy/ssh-action@v0.1.10
+              with:
+                  host: ${{ secrets.SSH_HOST }}
+                  username: ${{ secrets.SSH_USERNAME }}
+                  key: ${{ secrets.SSH_PRIVATE_KEY }}
+                  port: ${{ secrets.SSH_PORT || 22 }}
+                  script: |
+                      rm -rf /home/ubuntu/fundraising/ui/*
 
-      - name: Deploy to SSH server
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: ${{ secrets.SSH_PORT || 22 }}
-          source: "./dist/*"
-          target: "/home/ubuntu/fundraising/ui"
-          strip_components: 1
+            - name: Deploy to SSH server
+              uses: appleboy/scp-action@v0.1.7
+              with:
+                  host: ${{ secrets.SSH_HOST }}
+                  username: ${{ secrets.SSH_USERNAME }}
+                  key: ${{ secrets.SSH_PRIVATE_KEY }}
+                  port: ${{ secrets.SSH_PORT || 22 }}
+                  source: "./dist/*"
+                  target: "/home/ubuntu/fundraising/ui"
+                  strip_components: 1
 
-      - name: Set ownership and permissions for Nginx
-        uses: appleboy/ssh-action@v0.1.10
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: ${{ secrets.SSH_PORT || 22 }}
-          script: |
-            sudo chown -R ubuntu:www-data /home/ubuntu/fundraising/ui  # Set www-data as owner
-            sudo chmod -R 755 /home/ubuntu/fundraising/ui  # Set permissions to allow access
-
+            - name: Set ownership and permissions for Nginx
+              uses: appleboy/ssh-action@v0.1.10
+              with:
+                  host: ${{ secrets.SSH_HOST }}
+                  username: ${{ secrets.SSH_USERNAME }}
+                  key: ${{ secrets.SSH_PRIVATE_KEY }}
+                  port: ${{ secrets.SSH_PORT || 22 }}
+                  script: |
+                      sudo chown -R ubuntu:www-data /home/ubuntu/fundraising/ui  # Set www-data as owner
+                      sudo chmod -R 755 /home/ubuntu/fundraising/ui  # Set permissions to allow access
