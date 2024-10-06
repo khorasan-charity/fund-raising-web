@@ -1,4 +1,5 @@
 import { Nullable } from "@/types";
+import { IPayment } from "../payment/IPayment";
 
 export interface IDonationItem {
 	campaignId: number;
@@ -10,4 +11,8 @@ export interface IDonationItem {
 	creatorId: Nullable<number>;
 	creationTime: string;
 	id: number;
+}
+
+export interface IDonationPaymentResult extends IDonationItem {
+	payment: IPayment;
 }

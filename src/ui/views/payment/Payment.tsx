@@ -104,7 +104,7 @@ export default function Payment() {
 						color="secondary"
 						name="amount"
 						sx={{ mt: 2 }}
-						value={state.amount}
+						value={state.amount * 10}
 						onChange={val => onFieldChange("amount", val)}
 					/>
 					<TextField
