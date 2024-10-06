@@ -9,8 +9,10 @@ import { LoadingButton } from "@mui/lab";
 import { Container, Stack, TextField, Typography } from "@mui/material";
 import { FormEvent, useState } from "react";
 import { toast } from "react-toastify";
+import { apiBaseUrl } from "@/app/lib/env";
 
 export default function Payment() {
+	const url = apiBaseUrl + "/payment/proxy";
 	const { getParam } = useSearchParams();
 	const campaignId = getParam(searchParams.campaignId);
 	const { data, isPending, isError } = useCampaignDetails(
@@ -36,7 +38,7 @@ export default function Payment() {
 
 	function onSubmit(e: FormEvent<HTMLFormElement>) {
 		const form = new FormData(e.currentTarget);
-		const price = form.get("price");
+		const price = form.get("amount");
 
 		if (isPending) {
 			e.preventDefault();
@@ -82,7 +84,8 @@ export default function Payment() {
 				</Typography>
 			)}
 			<form
-				action=""
+				action={url}
+				method="POST"
 				onSubmit={onSubmit}
 			>
 				<Stack
@@ -92,14 +95,14 @@ export default function Payment() {
 				>
 					<input
 						type="text"
-						name="campaign"
+						name="campaignId"
 						value={campaignId}
 						hidden
 					/>
 					<PriceInput
 						label={fa.donate.inputLbl}
 						color="secondary"
-						name="price"
+						name="amount"
 						sx={{ mt: 2 }}
 						value={state.amount}
 						onChange={val => onFieldChange("amount", val)}
