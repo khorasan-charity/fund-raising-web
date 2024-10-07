@@ -93,7 +93,7 @@ export default function CampaignItemCard({
 					<Row
 						key={attr.id}
 						label={attr.title}
-						value={`${split(Number(attr.value))} ${attr.valueTypeTitle}`}
+						value={`${attr.valueType === "money" ? split(Number(attr.value)) : attr.value} ${attr.valueTypeTitle}`}
 					/>
 				))}
 			</Box>
