@@ -110,7 +110,7 @@ export default function Payment() {
 					<TextField
 						color="secondary"
 						sx={{ mt: 2 }}
-						name="fullname"
+						name="name"
 						label="نام و نام خانوادگی"
 						value={state.fullName}
 						onChange={e =>

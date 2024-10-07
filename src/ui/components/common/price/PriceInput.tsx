@@ -1,4 +1,4 @@
-import { split } from "@/app/lib/price";
+import { split, toman } from "@/app/lib/price";
 import { fa } from "@/ui/i18n";
 import TextField, { type TextFieldProps } from "@mui/material/TextField";
 import type { ChangeEvent } from "react";
@@ -12,7 +12,9 @@ export const PriceInput = ({ value, ...rest }: PriceProps) => {
 	const { onChange } = rest;
 
 	const inTomanMsg = fa.common.price.toman;
-	const helperText = value ? `${split(value)} ${inTomanMsg}` : null;
+	const helperText = value
+		? `${split(toman(value))} ${inTomanMsg}`
+		: null;
 
 	const onPriceChange = (
 		e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
