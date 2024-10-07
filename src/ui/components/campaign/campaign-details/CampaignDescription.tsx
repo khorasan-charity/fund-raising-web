@@ -27,14 +27,17 @@ export default function CampaignDescription({
 			>
 				{data.title}
 			</Typography>
-			<Typography
-				fontSize={18}
-				lineHeight={"32px"}
-				textAlign="justify"
-				px={1}
-			>
-				{data.description}
-			</Typography>
+			{data.description.split("\n").map((d, i) => (
+				<Typography
+					fontSize={18}
+					lineHeight={"32px"}
+					textAlign="justify"
+					px={1}
+					key={i}
+				>
+					{d}
+				</Typography>
+			))}
 		</>
 	);
 }
