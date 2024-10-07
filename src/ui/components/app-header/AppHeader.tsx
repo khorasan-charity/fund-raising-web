@@ -20,6 +20,7 @@ function AuthButton({ children }: PropsWithChildren) {
 		<Button
 			variant="text"
 			color="inherit"
+			sx={{ display: { xs: "none", md: "block" } }}
 		>
 			{children}
 		</Button>
