@@ -22,7 +22,7 @@ export function split(value: number): string {
 
 	const result = splitStringFromEnd(value.toString(), every);
 
-	return result.join(",") + (float ? `.${float}` : "");
+	return result.join("٬") + (float ? `.${float}` : "");
 }
 
 export function toman(rial: number) {
