@@ -10,6 +10,7 @@ import { apiBaseUrl } from "@/app/lib/env";
 
 import drug from "@/assets/images/drug.png";
 import getRaisedPercent from "@/app/lib/percent";
+import { toman } from "@/app/lib/price";
 
 const fallbackImage = drug;
 
@@ -79,7 +80,7 @@ export default function CampaignCard({ campaign }: ICampaignCardProps) {
 						fontSize={22}
 						color="secondary"
 					>
-						{campaign.raisedAmount / 1e6} میلیون تومان
+						{toman(campaign.raisedAmount) / 1e6} میلیون تومان
 					</Typography>
 					<Typography
 						fontWeight={"bold"}

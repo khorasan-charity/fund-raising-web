@@ -16,7 +16,7 @@ function splitStringFromEnd(
 	return result;
 }
 
-export const split = (value: number): string => {
+export function split(value: number): string {
 	const int = Math.floor(value / 10);
 	const float = value % 10;
 	const every = 3;
@@ -24,4 +24,8 @@ export const split = (value: number): string => {
 	const result = splitStringFromEnd(int.toString(), every);
 
 	return result.join(",") + (float ? `.${float}` : "");
-};
+}
+
+export function toman(rial: number) {
+	return Math.ceil(rial / 10);
+}

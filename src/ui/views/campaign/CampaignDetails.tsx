@@ -20,6 +20,7 @@ import CampaignDescription, {
 	CampaignDescriptionLoading,
 } from "@/ui/components/campaign/campaign-details/CampaignDescription";
 import { Skeleton } from "@mui/material";
+import { toman } from "@/app/lib/price";
 
 const Analytics = styled(Card)`
 	height: 490px;
@@ -101,7 +102,7 @@ export default function CampaignDetailsPage() {
 								fontWeight={700}
 								mt="51px"
 							>
-								{data.raisedAmount / 1e6}{" "}
+								{toman(data.raisedAmount) / 1e6}{" "}
 								{fa.common.price.millionToman}
 							</Typography>
 							<Typography mt="6px">
@@ -111,7 +112,7 @@ export default function CampaignDetailsPage() {
 									color="secondary.main"
 									lineHeight="24px"
 								>
-									{data.targetAmount / 1e6}{" "}
+									{toman(data.targetAmount) / 1e6}{" "}
 									{fa.common.price.millionToman}
 								</Typography>{" "}
 								{fa.common.price.targetAmount}
@@ -155,7 +156,7 @@ export default function CampaignDetailsPage() {
 					{data &&
 						!campaignDonationsError &&
 						campaignDonations &&
-						campaignDonations.items.length &&
+						!!campaignDonations.items.length &&
 						!isCampaignDonationsPending && (
 							<CampaignSupports
 								donations={campaignDonations.items}

@@ -5,6 +5,7 @@ import Typography from "@mui/material/Typography";
 import styled from "@emotion/styled";
 
 import child from "@/assets/images/child.png";
+import { split, toman } from "@/app/lib/price";
 
 const Child = styled.img`
 	max-width: 774px;
@@ -14,7 +15,12 @@ const Child = styled.img`
 	flex: 1;
 `;
 
-export default function HomeBanner() {
+interface IHomeBannerProps {
+	count: number;
+	amount: number;
+}
+
+export default function HomeBanner({ count, amount }: IHomeBannerProps) {
 	const fontSizeLarge = { xs: 26, lg: 32, xl: 36 };
 	const fontSizeNormal = { xs: 20, lg: 26, xl: 30 };
 	const fontSizeSmall = { xs: 12, lg: 18, xl: 22 };
@@ -47,7 +53,7 @@ export default function HomeBanner() {
 								fontWeight="bold"
 								color="secondary"
 							>
-								&nbsp;۴۵۹&nbsp;
+								&nbsp;{count}&nbsp;
 							</Typography>
 							حامی
 						</Typography>
@@ -65,7 +71,7 @@ export default function HomeBanner() {
 								fontWeight="bold"
 								color="secondary"
 							>
-								&nbsp;۵۹۰٫۰۰۰٫۰۰۰&nbsp;
+								&nbsp;{split(toman(amount))}&nbsp;
 								<Typography
 									component="span"
 									fontSize={fontSizeSmall}
