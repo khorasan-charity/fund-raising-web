@@ -21,6 +21,7 @@ import CampaignDescription, {
 } from "@/ui/components/campaign/campaign-details/CampaignDescription";
 import { Skeleton } from "@mui/material";
 import { toman } from "@/app/lib/price";
+import { toast } from "react-toastify";
 
 const Analytics = styled(Card)`
 	height: 490px;
@@ -43,6 +44,16 @@ export default function CampaignDetailsPage() {
 		error: campaignDonationsError,
 		isPending: isCampaignDonationsPending,
 	} = useCampaignDonations(Number(campaignId));
+
+	async function share() {
+		const href = window.location.href;
+		try {
+			await navigator.clipboard.writeText(href);
+			toast.success("آدرس کمپین در حافظه موقت کپی شد.");
+		} catch (_) {
+			// TODO
+		}
+	}
 
 	if (error) return <></>;
 
@@ -146,6 +157,7 @@ export default function CampaignDetailsPage() {
 									sx={{ mt: "10px" }}
 									color="inherit"
 									variant="outlined"
+									onClick={share}
 								>
 									{fa.common.share}
 								</Button>
