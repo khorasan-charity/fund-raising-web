@@ -34,7 +34,7 @@ const Fill = styled(Box)<{ height: number }>`
 export default function Participation({
 	percent,
 	size = 73,
-	fontSize = 22,
+	fontSize = 18,
 	percentFontSize = 16,
 	color = "secondary",
 }: IParticipationProps) {

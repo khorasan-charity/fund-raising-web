@@ -103,7 +103,7 @@ export default function CampaignDetailsPage() {
 										data.targetAmount,
 										data.raisedAmount,
 									)}
-									fontSize={48}
+									fontSize={32}
 									percentFontSize={22}
 								/>
 							</Box>

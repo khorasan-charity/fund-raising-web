@@ -105,7 +105,6 @@ export default function CampaignItemCard({
 			>
 				<Participation
 					percent={percent}
-					fontSize={32}
 					color={isFull ? "success" : "secondary"}
 				/>
 				<Box
