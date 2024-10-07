@@ -17,11 +17,10 @@ function splitStringFromEnd(
 }
 
 export function split(value: number): string {
-	const int = Math.floor(value / 10);
 	const float = value % 10;
 	const every = 3;
 
-	const result = splitStringFromEnd(int.toString(), every);
+	const result = splitStringFromEnd(value.toString(), every);
 
 	return result.join(",") + (float ? `.${float}` : "");
 }

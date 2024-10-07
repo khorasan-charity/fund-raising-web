@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import styled from "@emotion/styled";
 
 import child from "@/assets/images/child.png";
-import { split, toman } from "@/app/lib/price";
+import { split } from "@/app/lib/price";
 
 const Child = styled.img`
 	max-width: 774px;
@@ -78,7 +78,7 @@ export default function HomeBanner({
 									fontWeight="bold"
 									color="secondary"
 								>
-									&nbsp;{split(toman(amount))}&nbsp;
+									&nbsp;{split(amount)}&nbsp;
 									<Typography
 										component="span"
 										fontSize={fontSizeSmall}

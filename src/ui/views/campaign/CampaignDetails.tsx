@@ -20,7 +20,7 @@ import CampaignDescription, {
 	CampaignDescriptionLoading,
 } from "@/ui/components/campaign/campaign-details/CampaignDescription";
 import { Skeleton } from "@mui/material";
-import { toman } from "@/app/lib/price";
+import { split, toman } from "@/app/lib/price";
 import { toast } from "react-toastify";
 
 const Analytics = styled(Card)`
@@ -113,8 +113,8 @@ export default function CampaignDetailsPage() {
 								fontWeight={700}
 								mt="51px"
 							>
-								{toman(data.raisedAmount) / 1e6}{" "}
-								{fa.common.price.millionToman}
+								{split(toman(data.raisedAmount))}{" "}
+								{fa.common.price.toman}
 							</Typography>
 							<Typography mt="6px">
 								{fa.common.from}{" "}
@@ -123,8 +123,8 @@ export default function CampaignDetailsPage() {
 									color="secondary.main"
 									lineHeight="24px"
 								>
-									{toman(data.targetAmount) / 1e6}{" "}
-									{fa.common.price.millionToman}
+									{split(toman(data.targetAmount))}{" "}
+									{fa.common.price.toman}
 								</Typography>{" "}
 								{fa.common.price.targetAmount}
 							</Typography>
