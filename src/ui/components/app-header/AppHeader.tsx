@@ -50,8 +50,7 @@ export function AppHeader() {
 						<Typography
 							component="h1"
 							ml={2}
-							fontSize={24}
-							display={{ xs: "none", xl: "block" }}
+							fontSize={{ xs: "smaller", lg: 18 }}
 						>
 							{fa.app_header.title}
 						</Typography>

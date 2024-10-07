@@ -20,7 +20,7 @@ export default {
 		},
 	},
 	app_header: {
-		title: "مهراسان",
+		title: "آوای سلامتی به گوش می‌رسد، اگر تو همراه باشی",
 		login: "ورود",
 		register: "ثبت نام",
 	},
