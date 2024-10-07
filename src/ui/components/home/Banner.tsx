@@ -18,9 +18,14 @@ const Child = styled.img`
 interface IHomeBannerProps {
 	count: number;
 	amount: number;
+	shouldHideBannerText: boolean;
 }
 
-export default function HomeBanner({ count, amount }: IHomeBannerProps) {
+export default function HomeBanner({
+	count,
+	amount,
+	shouldHideBannerText,
+}: IHomeBannerProps) {
 	const fontSizeLarge = { xs: 26, lg: 32, xl: 36 };
 	const fontSizeNormal = { xs: 20, lg: 26, xl: 30 };
 	const fontSizeSmall = { xs: 12, lg: 18, xl: 22 };
@@ -34,63 +39,66 @@ export default function HomeBanner({ count, amount }: IHomeBannerProps) {
 				<Stack
 					flexDirection={{ xs: "column", xl: "row" }}
 					alignItems="center"
+					justifyContent="center"
 					gap={{ xs: 2, xl: 10 }}
 				>
-					<Typography
-						flex={1}
-						textAlign="center"
-					>
+					{!shouldHideBannerText && (
 						<Typography
-							component="span"
-							fontSize={fontSizeNormal}
-							lineHeight={2}
+							flex={1}
+							textAlign="center"
 						>
-							با کمک
 							<Typography
 								component="span"
-								fontSize={fontSizeLarge}
+								fontSize={fontSizeNormal}
 								lineHeight={2}
-								fontWeight="bold"
-								color="secondary"
 							>
-								&nbsp;{count}&nbsp;
-							</Typography>
-							حامی
-						</Typography>
-						<br />
-						<Typography
-							component="span"
-							fontSize={fontSizeNormal}
-							lineHeight={2}
-						>
-							مبلغ
-							<Typography
-								component="span"
-								fontSize={fontSizeLarge}
-								lineHeight={2}
-								fontWeight="bold"
-								color="secondary"
-							>
-								&nbsp;{split(toman(amount))}&nbsp;
+								با کمک
 								<Typography
 									component="span"
-									fontSize={fontSizeSmall}
+									fontSize={fontSizeLarge}
+									lineHeight={2}
 									fontWeight="bold"
 									color="secondary"
 								>
-									تومان&nbsp;
+									&nbsp;{count}&nbsp;
+								</Typography>
+								حامی
+							</Typography>
+							<br />
+							<Typography
+								component="span"
+								fontSize={fontSizeNormal}
+								lineHeight={2}
+							>
+								مبلغ
+								<Typography
+									component="span"
+									fontSize={fontSizeLarge}
+									lineHeight={2}
+									fontWeight="bold"
+									color="secondary"
+								>
+									&nbsp;{split(toman(amount))}&nbsp;
+									<Typography
+										component="span"
+										fontSize={fontSizeSmall}
+										fontWeight="bold"
+										color="secondary"
+									>
+										تومان&nbsp;
+									</Typography>
 								</Typography>
 							</Typography>
+							<br />
+							<Typography
+								component="span"
+								fontSize={fontSizeNormal}
+								lineHeight={2}
+							>
+								جمع‌آوری شده است.
+							</Typography>
 						</Typography>
-						<br />
-						<Typography
-							component="span"
-							fontSize={fontSizeNormal}
-							lineHeight={2}
-						>
-							جمع‌آوری شده است.
-						</Typography>
-					</Typography>
+					)}
 					<Child src={child} />
 				</Stack>
 			</Container>
