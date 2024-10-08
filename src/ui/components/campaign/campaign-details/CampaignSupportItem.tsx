@@ -39,6 +39,7 @@ export default function SupportItem({ donation }: ISupportItemProps) {
 						<Typography
 							fontSize={12}
 							color="gray"
+							maxWidth={150}
 						>
 							{donation.message}
 						</Typography>
@@ -54,6 +55,7 @@ export default function SupportItem({ donation }: ISupportItemProps) {
 					color="secondary"
 					fontWeight={700}
 					fontSize={16}
+					noWrap
 				>
 					{split(toman(donation.amount))} {fa.common.price.toman}
 				</Typography>
