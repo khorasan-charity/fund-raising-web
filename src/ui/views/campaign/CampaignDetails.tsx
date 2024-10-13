@@ -22,6 +22,7 @@ import CampaignDescription, {
 import { Skeleton } from "@mui/material";
 import { split, toman } from "@/app/lib/price";
 import { toast } from "react-toastify";
+import WarningAlertBox from "@/ui/components/alert/WarningAlert";
 
 const Analytics = styled(Card)`
 	height: 490px;
@@ -58,126 +59,147 @@ export default function CampaignDetailsPage() {
 	if (error) return <></>;
 
 	return (
-		<Container>
-			<Stack
-				direction={{ xs: "column", lg: "row" }}
-				mt={1}
-				gap={1}
+		<>
+			<WarningAlertBox
+				p={2}
+				minHeight={80}
+				display="flex"
+				justifyContent="center"
+				alignItems="center"
+				position="sticky"
+				top={80}
+				zIndex={99}
 			>
-				<Stack
-					flex={1}
-					// 96px => app header, 8px => mt={1} upper stack
-					height="calc(100vh - (96px + 8px))"
-					overflow="auto"
-					order={{ xs: 2, lg: 1 }}
-					p={1}
+				<Typography
+					color="warning.main"
+					textAlign="center"
+					maxWidth="md"
 				>
-					{isPending ? (
-						<CampaignDescriptionLoading />
-					) : (
-						<CampaignDescription data={data} />
-					)}
-
-					{campaignItems &&
-						!campaignItemsError &&
-						!isCampaignItemsPending && (
-							<CampaignItems items={campaignItems} />
+					{fa.common.alert.paymentGateway}
+				</Typography>
+			</WarningAlertBox>
+			<Container>
+				<Stack
+					direction={{ xs: "column", lg: "row" }}
+					mt={1}
+					gap={1}
+				>
+					<Stack
+						flex={1}
+						// 96px => app header, 8px => mt={1} upper stack
+						height="calc(100vh - (96px + 8px))"
+						overflow="auto"
+						order={{ xs: 2, lg: 1 }}
+						p={1}
+					>
+						{isPending ? (
+							<CampaignDescriptionLoading />
+						) : (
+							<CampaignDescription data={data} />
 						)}
-				</Stack>
-				<Stack
-					width={{ xs: "100%", lg: 400 }}
-					order={{ xs: 1, lg: 1 }}
-					display={{ xs: "contents", lg: "flex" }}
-				>
-					{isPending ? (
-						<AnalyticsLoading />
-					) : (
-						<Analytics
-							elevation={3}
-							sx={{ mt: 1 }}
-						>
-							<Box>
-								<Participation
-									size={133}
-									percent={getRaisedPercent(
-										data.targetAmount,
-										data.raisedAmount,
-									)}
-									fontSize={32}
-									percentFontSize={22}
-								/>
-							</Box>
-							<Typography
-								color="secondary.main"
-								fontSize={32}
-								fontWeight={700}
-								mt="51px"
+
+						{campaignItems &&
+							!campaignItemsError &&
+							!isCampaignItemsPending && (
+								<CampaignItems items={campaignItems} />
+							)}
+					</Stack>
+					<Stack
+						width={{ xs: "100%", lg: 400 }}
+						order={{ xs: 1, lg: 1 }}
+						display={{ xs: "contents", lg: "flex" }}
+					>
+						{isPending ? (
+							<AnalyticsLoading />
+						) : (
+							<Analytics
+								elevation={3}
+								sx={{ mt: 1 }}
 							>
-								{split(toman(data.raisedAmount))}{" "}
-								{fa.common.price.toman}
-							</Typography>
-							<Typography mt="6px">
-								{fa.common.from}{" "}
+								<Box>
+									<Participation
+										size={133}
+										percent={getRaisedPercent(
+											data.targetAmount,
+											data.raisedAmount,
+										)}
+										fontSize={32}
+										percentFontSize={22}
+									/>
+								</Box>
 								<Typography
-									component="span"
 									color="secondary.main"
-									lineHeight="24px"
+									fontSize={32}
+									fontWeight={700}
+									mt="51px"
 								>
-									{split(toman(data.targetAmount))}{" "}
+									{split(toman(data.raisedAmount))}{" "}
 									{fa.common.price.toman}
-								</Typography>{" "}
-								{fa.common.price.targetAmount}
-							</Typography>
-							<Typography>
-								{fa.common.by}{" "}
-								<Typography
-									component="span"
-									color="success.light"
-									lineHeight="24px"
-								>
-									{data.raiseCount} {fa.common.supporter}
-								</Typography>{" "}
-								{fa.common.supplied}.
-							</Typography>
-							<Box mt="21px">
-								<Link
-									to={`${routes.payment}?${searchParams.campaignId}=${campaignId}`}
-								>
+								</Typography>
+								<Typography mt="6px">
+									{fa.common.from}{" "}
+									<Typography
+										component="span"
+										color="secondary.main"
+										lineHeight="24px"
+									>
+										{split(toman(data.targetAmount))}{" "}
+										{fa.common.price.toman}
+									</Typography>{" "}
+									{fa.common.price.targetAmount}
+								</Typography>
+								<Typography>
+									{fa.common.by}{" "}
+									<Typography
+										component="span"
+										color="success.light"
+										lineHeight="24px"
+									>
+										{data.raiseCount}{" "}
+										{fa.common.supporter}
+									</Typography>{" "}
+									{fa.common.supplied}.
+								</Typography>
+								<Box mt="21px">
+									<Link
+										to={`${routes.payment}?${searchParams.campaignId}=${campaignId}`}
+									>
+										<Button
+											fullWidth
+											size="large"
+											color="secondary"
+										>
+											{fa.common.cashDonate}
+										</Button>
+									</Link>
 									<Button
 										fullWidth
 										size="large"
-										color="secondary"
+										sx={{ mt: "10px" }}
+										color="inherit"
+										variant="outlined"
+										onClick={share}
 									>
-										{fa.common.cashDonate}
+										{fa.common.share}
 									</Button>
-								</Link>
-								<Button
-									fullWidth
-									size="large"
-									sx={{ mt: "10px" }}
-									color="inherit"
-									variant="outlined"
-									onClick={share}
-								>
-									{fa.common.share}
-								</Button>
-							</Box>
-						</Analytics>
-					)}
-
-					{data &&
-						!campaignDonationsError &&
-						campaignDonations &&
-						!!campaignDonations.items.length &&
-						!isCampaignDonationsPending && (
-							<CampaignSupports
-								donations={campaignDonations.items}
-								raiseCount={data.raiseCount}
-							/>
+								</Box>
+							</Analytics>
 						)}
+
+						{data &&
+							!campaignDonationsError &&
+							campaignDonations &&
+							!!campaignDonations.items.length &&
+							!isCampaignDonationsPending && (
+								<CampaignSupports
+									donations={campaignDonations.items}
+									raiseCount={data.raiseCount}
+								/>
+							)}
+					</Stack>
 				</Stack>
-			</Stack>
-		</Container>
+			</Container>
+		</>
 	);
 }
 
