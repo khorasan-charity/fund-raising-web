@@ -126,7 +126,6 @@ export default function Payment() {
 							sx={{ mt: 2 }}
 							value={state.amount}
 							onChange={val => onFieldChange("amount", val)}
-							disabled
 						/>
 						<TextField
 							color="secondary"
@@ -137,7 +136,6 @@ export default function Payment() {
 							onChange={e =>
 								onFieldChange("fullName", e.target.value)
 							}
-							disabled
 						/>
 						<TextField
 							color="secondary"
@@ -162,7 +160,6 @@ export default function Payment() {
 								min: 0,
 								dir: "ltr",
 							}}
-							disabled
 						/>
 						<TextField
 							color="secondary"
@@ -173,7 +170,6 @@ export default function Payment() {
 							onChange={e =>
 								onFieldChange("message", e.target.value)
 							}
-							disabled
 						/>
 						<TextField
 							color="secondary"
@@ -189,14 +185,13 @@ export default function Payment() {
 									e.target.value,
 								)
 							}
-							disabled
 						/>
 						<LoadingButton
 							color="secondary"
 							variant="contained"
 							type="submit"
 							sx={{ mt: 4, fontSize: 18 }}
-							disabled={isPending || true}
+							disabled={isPending}
 						>
 							پرداخت
 						</LoadingButton>
