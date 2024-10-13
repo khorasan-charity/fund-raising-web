@@ -13,7 +13,7 @@ import { apiBaseUrl } from "@/app/lib/env";
 import WarningAlertBox from "@/ui/components/alert/WarningAlert";
 
 export default function Payment() {
-	const url = apiBaseUrl + "/payment/proxy";
+	const url = apiBaseUrl + "/payment";
 	const { getParam } = useSearchParams();
 	const campaignId = getParam(searchParams.campaignId);
 	const { data, isPending, isError } = useCampaignDetails(
