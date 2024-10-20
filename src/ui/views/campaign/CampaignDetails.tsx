@@ -22,7 +22,6 @@ import CampaignDescription, {
 import { Skeleton } from "@mui/material";
 import { split, toman } from "@/app/lib/price";
 import { toast } from "react-toastify";
-import WarningAlertBox from "@/ui/components/alert/WarningAlert";
 
 const Analytics = styled(Card)`
 	height: 490px;
@@ -60,24 +59,6 @@ export default function CampaignDetailsPage() {
 
 	return (
 		<>
-			<WarningAlertBox
-				p={2}
-				minHeight={80}
-				display="flex"
-				justifyContent="center"
-				alignItems="center"
-				position="sticky"
-				top={80}
-				zIndex={99}
-			>
-				<Typography
-					color="warning.main"
-					textAlign="center"
-					maxWidth="md"
-				>
-					{fa.common.alert.paymentGateway}
-				</Typography>
-			</WarningAlertBox>
 			<Container>
 				<Stack
 					direction={{ xs: "column", lg: "row" }}

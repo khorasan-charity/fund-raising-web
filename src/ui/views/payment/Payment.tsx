@@ -10,7 +10,6 @@ import { Container, Stack, TextField, Typography } from "@mui/material";
 import { FormEvent, useState } from "react";
 import { toast } from "react-toastify";
 import { apiBaseUrl } from "@/app/lib/env";
-import WarningAlertBox from "@/ui/components/alert/WarningAlert";
 
 export default function Payment() {
 	const url = apiBaseUrl + "/payment";
@@ -57,24 +56,6 @@ export default function Payment() {
 
 	return (
 		<>
-			<WarningAlertBox
-				p={2}
-				minHeight={80}
-				display="flex"
-				justifyContent="center"
-				alignItems="center"
-				position="sticky"
-				top={80}
-				zIndex={99}
-			>
-				<Typography
-					color="warning.main"
-					textAlign="center"
-					maxWidth="md"
-				>
-					{fa.common.alert.paymentGateway}
-				</Typography>
-			</WarningAlertBox>
 			<Container>
 				{isPending ? (
 					<Box
