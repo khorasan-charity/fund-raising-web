@@ -98,6 +98,7 @@ export default function Payment() {
 							type="text"
 							name="campaignId"
 							value={campaignId}
+							onChange={() => {}}
 							hidden
 						/>
 						<PriceInput

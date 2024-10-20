@@ -17,14 +17,13 @@ function splitStringFromEnd(
 }
 
 export function split(value: number): string {
-	const float = value % 10;
 	const every = 3;
 
 	const result = splitStringFromEnd(value.toString(), every);
 
-	return result.join("٬") + (float ? `.${float}` : "");
+	return result.join("٬");
 }
 
 export function toman(rial: number) {
-	return Math.ceil(rial / 10);
+	return Number((rial / 10).toFixed(2));
 }

@@ -8,20 +8,23 @@ type PriceProps = Omit<TextFieldProps, "onChange" | "value"> & {
 	onChange: (val: number) => void;
 };
 
+const p2e = (s: string) =>
+	s.replace(/[۰-۹]/g, d => String("۰۱۲۳۴۵۶۷۸۹".indexOf(d)));
+
 export const PriceInput = ({ value, ...rest }: PriceProps) => {
 	const { onChange } = rest;
 
 	const inTomanMsg = fa.common.price.toman;
-	const helperText = value
-		? `${split(toman(value))} ${inTomanMsg}`
-		: null;
+	const _toman = toman(value);
+	const int = Math.floor(_toman);
+	const helperText = value ? `${split(int)} ${inTomanMsg}` : null;
 
 	const onPriceChange = (
 		e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
 	) => {
-		const newValue = Math.abs(
-			Number(e.target.value.replaceAll(".", "")),
-		);
+		const { value } = e.target;
+
+		const newValue = Math.abs(Number(p2e(value).replaceAll(".", "")));
 		onChange(newValue);
 	};
 
