@@ -19,6 +19,7 @@ export default function CampaignSupports({
 			height="370px"
 			order={4}
 			pb={2}
+			flex={{ xs: undefined, lg: 1 }}
 		>
 			<Stack
 				direction="row"

@@ -24,7 +24,6 @@ import { split, toman } from "@/app/lib/price";
 import { toast } from "react-toastify";
 
 const Analytics = styled(Card)`
-	height: 490px;
 	padding: 30px;
 	text-align: center;
 `;
@@ -64,11 +63,14 @@ export default function CampaignDetailsPage() {
 					direction={{ xs: "column", lg: "row" }}
 					mt={1}
 					gap={1}
+					// 96px => app header, 8px => mt={1} upper stack
+					height={{
+						xs: undefined,
+						lg: "calc(100vh - (96px + 8px))",
+					}}
 				>
 					<Stack
 						flex={1}
-						// 96px => app header, 8px => mt={1} upper stack
-						height="calc(100vh - (96px + 8px))"
 						overflow="auto"
 						order={{ xs: 2, lg: 1 }}
 						p={1}
@@ -83,17 +85,6 @@ export default function CampaignDetailsPage() {
 							!campaignItemsError &&
 							!isCampaignItemsPending && (
 								<CampaignItems items={campaignItems} />
-							)}
-
-						{data &&
-							!campaignDonationsError &&
-							campaignDonations &&
-							!!campaignDonations.items.length &&
-							!isCampaignDonationsPending && (
-								<CampaignSupports
-									donations={campaignDonations.items}
-									raiseCount={data.raiseCount}
-								/>
 							)}
 					</Stack>
 					<Stack
@@ -119,40 +110,43 @@ export default function CampaignDetailsPage() {
 										percentFontSize={22}
 									/>
 								</Box>
-								<Typography
-									color="secondary.main"
-									fontSize={32}
-									fontWeight={700}
-									mt="51px"
-								>
-									{split(toman(data.raisedAmount))}{" "}
-									{fa.common.price.toman}
-								</Typography>
-								<Typography mt="6px">
-									{fa.common.from}{" "}
+								<Box my={4}>
 									<Typography
-										component="span"
 										color="secondary.main"
-										lineHeight="24px"
+										fontSize={32}
+										fontWeight={700}
 									>
-										{split(toman(data.targetAmount))}{" "}
+										{split(toman(data.raisedAmount))}{" "}
 										{fa.common.price.toman}
-									</Typography>{" "}
-									{fa.common.price.targetAmount}
-								</Typography>
-								<Typography>
-									{fa.common.by}{" "}
-									<Typography
-										component="span"
-										color="success.light"
-										lineHeight="24px"
-									>
-										{data.raiseCount}{" "}
-										{fa.common.supporter}
-									</Typography>{" "}
-									{fa.common.supplied}.
-								</Typography>
-								<Box mt="21px">
+									</Typography>
+									<Typography>
+										{fa.common.from}{" "}
+										<Typography
+											component="span"
+											color="secondary.main"
+											lineHeight="24px"
+										>
+											{split(
+												toman(data.targetAmount),
+											)}{" "}
+											{fa.common.price.toman}
+										</Typography>{" "}
+										{fa.common.price.targetAmount}
+									</Typography>
+									<Typography>
+										{fa.common.by}{" "}
+										<Typography
+											component="span"
+											color="success.light"
+											lineHeight="24px"
+										>
+											{data.raiseCount}{" "}
+											{fa.common.supporter}
+										</Typography>{" "}
+										{fa.common.supplied}.
+									</Typography>
+								</Box>
+								<Box>
 									<Link
 										to={`${routes.payment}?${searchParams.campaignId}=${campaignId}`}
 									>
@@ -177,6 +171,17 @@ export default function CampaignDetailsPage() {
 								</Box>
 							</Analytics>
 						)}
+
+						{data &&
+							!campaignDonationsError &&
+							campaignDonations &&
+							!!campaignDonations.items.length &&
+							!isCampaignDonationsPending && (
+								<CampaignSupports
+									donations={campaignDonations.items}
+									raiseCount={data.raiseCount}
+								/>
+							)}
 					</Stack>
 				</Stack>
 			</Container>
