@@ -84,6 +84,17 @@ export default function CampaignDetailsPage() {
 							!isCampaignItemsPending && (
 								<CampaignItems items={campaignItems} />
 							)}
+
+						{data &&
+							!campaignDonationsError &&
+							campaignDonations &&
+							!!campaignDonations.items.length &&
+							!isCampaignDonationsPending && (
+								<CampaignSupports
+									donations={campaignDonations.items}
+									raiseCount={data.raiseCount}
+								/>
+							)}
 					</Stack>
 					<Stack
 						width={{ xs: "100%", lg: 400 }}
@@ -166,17 +177,6 @@ export default function CampaignDetailsPage() {
 								</Box>
 							</Analytics>
 						)}
-
-						{data &&
-							!campaignDonationsError &&
-							campaignDonations &&
-							!!campaignDonations.items.length &&
-							!isCampaignDonationsPending && (
-								<CampaignSupports
-									donations={campaignDonations.items}
-									raiseCount={data.raiseCount}
-								/>
-							)}
 					</Stack>
 				</Stack>
 			</Container>
