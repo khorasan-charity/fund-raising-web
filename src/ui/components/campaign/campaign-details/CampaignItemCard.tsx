@@ -7,8 +7,11 @@ import { fa } from "@/ui/i18n";
 import { ICampaignItem } from "@/domain/campaign/ICampaignItem";
 import { split } from "@/app/lib/price";
 
+import medicine from "@/assets/images/placeholder-image.webp";
+
 const CampaignItemImg = styled.img`
 	width: 100%;
+	aspect-ratio: 3/2;
 `;
 
 interface IRowProps {
@@ -66,9 +69,22 @@ export default function CampaignItemCard({
 	const percent = getRaisedPercent(item.targetAmount, item.raisedAmount);
 	const isFull = percent === 100;
 	return (
-		<Card elevation={2}>
+		<Card
+			elevation={2}
+			sx={{
+				display: "flex",
+				flexDirection: "column",
+				height: "100%",
+			}}
+		>
 			<Box position="relative">
-				<CampaignItemImg src={getImageSource(item.imageFileId)} />
+				<CampaignItemImg
+					src={getImageSource(item.imageFileId)}
+					onError={e => {
+						const img = e.target as HTMLImageElement;
+						img.src = medicine;
+					}}
+				/>
 				<Typography
 					position="absolute"
 					color="white"
@@ -99,7 +115,7 @@ export default function CampaignItemCard({
 			</Box>
 
 			<Box
-				mt={3}
+				mt="auto"
 				mb={1}
 				mx={1}
 			>
