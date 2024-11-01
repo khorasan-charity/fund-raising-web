@@ -4,7 +4,6 @@ import Campaigns from "@/ui/components/home/Campaigns";
 
 import useCampaignList from "@/app/services/use-campaign-list";
 import useHomeDonation from "@/app/services/use-home-donation";
-import { toman } from "@/app/lib/price";
 
 export default function Home() {
 	const { data, error, isPending } = useCampaignList();
@@ -19,7 +18,7 @@ export default function Home() {
 		<>
 			<HomeBanner
 				count={count.data ?? 0}
-				amount={toman(amount.data ?? 0)}
+				amount={amount.data ?? 0}
 				shouldHideBannerText={shouldHideBannerText}
 			/>
 			<Container>

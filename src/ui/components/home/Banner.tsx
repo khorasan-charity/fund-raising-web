@@ -85,7 +85,7 @@ export default function HomeBanner({
 										fontWeight="bold"
 										color="secondary"
 									>
-										تومان&nbsp;
+										ریال&nbsp;
 									</Typography>
 								</Typography>
 							</Typography>

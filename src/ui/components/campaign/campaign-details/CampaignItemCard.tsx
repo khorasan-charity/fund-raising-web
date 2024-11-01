@@ -5,7 +5,7 @@ import getRaisedPercent from "@/app/lib/percent";
 import getImageSource from "@/app/lib/get-image-source";
 import { fa } from "@/ui/i18n";
 import { ICampaignItem } from "@/domain/campaign/ICampaignItem";
-import { split, toman } from "@/app/lib/price";
+import { split } from "@/app/lib/price";
 
 const CampaignItemImg = styled.img`
 	width: 100%;
@@ -117,15 +117,14 @@ export default function CampaignItemCard({
 						fontSize={19}
 						color={isFull ? "success.main" : "secondary.main"}
 					>
-						{split(toman(item.raisedAmount))}{" "}
-						{fa.common.price.toman}
+						{split(item.raisedAmount)} {fa.common.price.rial}
 					</Typography>
 					<Typography
 						fontWeight={"bold"}
 						fontSize={{ xs: 14, sm: 16 }}
 					>
-						{fa.common.from} {split(toman(item.targetAmount))}{" "}
-						{fa.common.price.toman}
+						{fa.common.from} {split(item.targetAmount)}{" "}
+						{fa.common.price.rial}
 					</Typography>
 				</Box>
 			</Box>

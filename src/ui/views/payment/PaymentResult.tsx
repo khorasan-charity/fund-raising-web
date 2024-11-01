@@ -12,7 +12,8 @@ import { useEffect, useState } from "react";
 import getDonation from "@/app/api/endpoints/donation/get-donation";
 import { IDonationPaymentResult } from "@/domain/campaign/IDonationItem";
 import { Nullable } from "@/types";
-import { split, toman } from "@/app/lib/price";
+import { split } from "@/app/lib/price";
+import { fa } from "@/ui/i18n";
 
 function InfoItem({ label, value }: { label: string; value: string }) {
 	return (
@@ -162,8 +163,9 @@ export default function PaymentConfirm() {
 								<InfoItem
 									label="مبلغ"
 									value={
-										split(toman(state.data.amount)) +
-										" تومان"
+										split(state.data.amount) +
+										" " +
+										fa.common.price.rial
 									}
 								/>
 							)}

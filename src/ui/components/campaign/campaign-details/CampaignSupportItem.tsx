@@ -1,5 +1,5 @@
 import toJalaliFormattedString from "@/app/lib/date";
-import { split, toman } from "@/app/lib/price";
+import { split } from "@/app/lib/price";
 import { IDonationItem } from "@/domain/campaign/IDonationItem";
 import { fa } from "@/ui/i18n";
 import Avatar from "@mui/material/Avatar/Avatar";
@@ -57,7 +57,7 @@ export default function SupportItem({ donation }: ISupportItemProps) {
 					fontSize={16}
 					noWrap
 				>
-					{split(toman(donation.amount))} {fa.common.price.toman}
+					{split(donation.amount)} {fa.common.price.rial}
 				</Typography>
 				<Typography
 					fontSize={12}
