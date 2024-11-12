@@ -5,8 +5,10 @@ import Skeleton from "@mui/material/Skeleton";
 import Typography from "@mui/material/Typography/Typography";
 
 const Img = styled.img`
+	width: 100%;
 	max-height: 490px;
 	height: 100%;
+	object-fit: contain;
 `;
 
 interface ICampaignDescriptionProps {
