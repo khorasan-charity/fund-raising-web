@@ -24,6 +24,12 @@ const CampaignImg = styled.img`
 `;
 
 export default function CampaignCard({ campaign }: ICampaignCardProps) {
+	const percent = getRaisedPercent(
+		campaign.targetAmount,
+		campaign.raisedAmount,
+	);
+	const isFull = percent === 100;
+
 	const navigate = useNavigate();
 
 	function onCardClick() {
@@ -65,12 +71,7 @@ export default function CampaignCard({ campaign }: ICampaignCardProps) {
 				mt={3}
 				pb={2}
 			>
-				<Participation
-					percent={getRaisedPercent(
-						campaign.targetAmount,
-						campaign.raisedAmount,
-					)}
-				/>
+				<Participation percent={percent} />
 				<Box
 					display="inline-block"
 					ml="10px"
@@ -79,7 +80,7 @@ export default function CampaignCard({ campaign }: ICampaignCardProps) {
 					<Typography
 						fontWeight={700}
 						fontSize={22}
-						color="secondary"
+						color={isFull ? "success.main" : "secondary.main"}
 					>
 						{split(campaign.raisedAmount)}{" "}
 						{fa.common.price.rial}

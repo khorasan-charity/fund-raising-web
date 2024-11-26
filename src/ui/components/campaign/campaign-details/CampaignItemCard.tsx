@@ -68,6 +68,7 @@ export default function CampaignItemCard({
 }: ICampaignItemCardProps) {
 	const percent = getRaisedPercent(item.targetAmount, item.raisedAmount);
 	const isFull = percent === 100;
+
 	return (
 		<Card
 			elevation={2}
@@ -119,10 +120,7 @@ export default function CampaignItemCard({
 				mb={1}
 				mx={1}
 			>
-				<Participation
-					percent={percent}
-					color={isFull ? "success" : "secondary"}
-				/>
+				<Participation percent={percent} />
 				<Box
 					display="inline-block"
 					ml="10px"

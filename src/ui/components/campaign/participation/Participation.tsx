@@ -7,7 +7,6 @@ interface IParticipationProps {
 	size?: number;
 	fontSize?: number;
 	percentFontSize?: number;
-	color?: "secondary" | "success";
 }
 
 const Circle = styled(Box)<{ size: number }>`
@@ -36,14 +35,13 @@ export default function Participation({
 	size = 73,
 	fontSize = 18,
 	percentFontSize = 16,
-	color = "secondary",
 }: IParticipationProps) {
-	const isSecondary = color === "secondary";
+	const isFull = percent === 100;
 
 	const colors = {
-		borderColor: isSecondary ? "secondary.main" : "success.main",
-		bgColor: isSecondary ? "secondary.800" : "success.dark",
-		fillBgColor: isSecondary ? "secondary.200" : "success.light",
+		borderColor: isFull ? "success.main" : "secondary.main",
+		bgColor: isFull ? "success.dark" : "secondary.800",
+		fillBgColor: isFull ? "success.light" : "secondary.200",
 	};
 
 	return (
