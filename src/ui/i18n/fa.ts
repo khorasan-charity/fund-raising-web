@@ -1,5 +1,6 @@
 export default {
 	common: {
+		home: "صفحه اصلی",
 		from: "از",
 		by: "توسط",
 		supporter: "حامی",
@@ -7,6 +8,8 @@ export default {
 		count: "نفر",
 		supplied: "تامین شده است",
 		cashDonate: "کمک نقدی",
+		endOfDonation:
+			"هزینه این کمپین تامین شده است. لطفا جهت کمک نقدی، یکی از کمپین‌های دیگر در صفحه اصلی را انتخاب نمایید.",
 		share: "اشتراک گذاری",
 		need: "مورد نیاز",
 		anonymous: "ناشناس",

@@ -145,17 +145,39 @@ export default function CampaignDetailsPage() {
 									</Typography>
 								</Box>
 								<Box>
-									<Link
-										to={`${routes.payment}?${searchParams.campaignId}=${campaignId}`}
-									>
-										<Button
-											fullWidth
-											size="large"
-											color="secondary"
+									{data.isActive ? (
+										<Link
+											to={`${routes.payment}?${searchParams.campaignId}=${campaignId}`}
 										>
-											{fa.common.cashDonate}
-										</Button>
-									</Link>
+											<Button
+												fullWidth
+												size="large"
+												color="secondary"
+											>
+												{fa.common.cashDonate}
+											</Button>
+										</Link>
+									) : (
+										<>
+											<Typography
+												color="success.light"
+												fontSize={14}
+												fontWeight={700}
+												mb={1}
+											>
+												{fa.common.endOfDonation}
+											</Typography>
+											<Link to="/">
+												<Button
+													fullWidth
+													size="large"
+													color="secondary"
+												>
+													{fa.common.home}
+												</Button>
+											</Link>
+										</>
+									)}
 									<Button
 										fullWidth
 										size="large"
